@@ -114,7 +114,35 @@ switch(browser){
 }
 
 //while
-let i = true;
-while(i){
-    console.log("1");
+let i = 3;
+while(i > 0){
+    console.log(`${i}`);
+    i--;
+}
+
+//do-while
+i = 3;
+do{
+    console.log(`do while: ${i}`);
+    i--;
+}while(i > 0);
+
+//for
+for(let i = 1; i < 10; i++){
+    console.log(`for : ${i}`);
+}
+
+for(let i = 0; i <= 10; i++){
+    if(i % 2 == 0){
+        console.log(`${i} `);
+    }else{
+        continue;
+    }
+}
+for(let i = 0; i <= 10; i++){
+    if(i === 8){
+        break;
+    }else{
+        console.log(i)
+    }
 }
