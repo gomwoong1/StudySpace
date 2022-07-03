@@ -3,11 +3,12 @@
 //1. object literal
 const jw = {name: 'jw', age: 23};
 
-function print(person){
+function print2(person) {
     console.log(person.name);
     console.log(person.age);
 }
-print(jw);
+
+print2(jw);
 
 jw.job = 'student'; //뒤늦게 추가 가능함.
 console.log(jw.job);
