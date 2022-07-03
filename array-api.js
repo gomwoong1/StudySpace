@@ -108,4 +108,3 @@ const students = [
     const result = students.map((student) => student.score).sort((a, b) => a-b).join();
     console.log(result);
 }
-
