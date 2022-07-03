@@ -70,6 +70,7 @@ printAgain();
 const sumAgain = sum;
 console.log(sumAgain(1, 3));
 
+//콜백 함수
 function randomQuiz(answer, printYes, printNo){
     if(answer === 'love'){
         printYes();
@@ -79,13 +80,35 @@ function randomQuiz(answer, printYes, printNo){
     }
 }
 
+//익명 함수
 const printYes = function (){
     console.log('yes');
 }
 
-const printNo = function (){
+//네임드 함수
+//디버깅 할 때 이름이 찍히도록 할 때 쓰임
+//아니면 자기 자신 호출해서 재귀함수처럼 쓰일 때
+const printNo = function pt(){
     console.log('no');
 }
 
 randomQuiz('hi', printYes, printNo);
 randomQuiz('love', printYes, printNo);
+
+//arrow function
+const simplePrint = () => console.log('simplePrint');
+
+// function simplePrint() {
+//     console.log('simplePrint');
+//}
+
+const add2 = (a, b) => a+b;
+
+// function add2(a, b) {
+//     return a + b;
+//}
+
+//IIFE
+(function hello(){
+    console.log('hello')
+})();
