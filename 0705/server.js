@@ -27,7 +27,7 @@ app.listen(port, () => {
 const router = require('./routers/router.js');
 app.use('/', router);
 
-app.get('/get-db', (req, res) => {
+app.post('/get-db', (req, res) => {
     const body = req.body;
-    return db.getName(conn, res.body);
+    return db.getName(conn, res, body);
 })

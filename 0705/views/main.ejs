@@ -13,14 +13,14 @@
         //라우터에서 쿼리스트링으로 값을 가져옴
         $.ajax({
             url: '/get-db',
-            method: 'post',
+            method: 'POST',
             data: {id: 1},
             dataType: 'json',
             success: (getData) => {
                 console.log(getData);
             },
-            error: (req, status, err) => {
-                console.error(`디비 테이블 가져오기 에러 ${req.status, req.responseText, err}`);
+            error: (request, status, err) => {
+                //console.error(`디비 테이블 가져오기 에러 ${req.status, req.responseText, err}`);
             }
         })
     </script>
