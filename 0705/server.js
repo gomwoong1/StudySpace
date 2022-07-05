@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
 const port = 3001;
+
 const path = require('path');
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 const mysql = require('mysql2');
 
 const dbinfo = require('./db.js');
@@ -14,9 +19,6 @@ conn.getConnection((err) => {
         console.log(err);
     }
 })
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
 
 app.listen(port, () => {
     console.log(`Server Open: ${port} port`)

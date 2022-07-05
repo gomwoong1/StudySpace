@@ -9,7 +9,7 @@ module.exports = class DB{
 
     getName(conn, res, body) {
         const id = body.id;
-        const qry = 'select SN_NAME from TB_TEST where id = ?'
+        const qry = 'select SN_NAME from TB_TEST where SN_ID = ?'
 
         conn.query(qry, [id], (err,row) => {
             console.log(row);
