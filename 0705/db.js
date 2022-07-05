@@ -6,4 +6,15 @@ module.exports = class DB{
         password: 'server402!',
         database: 'diy'
     }
+
+    getName(conn, res, body) {
+        const id = body.id;
+        const qry = 'select SN_NAME from TB_TEST where id = ?'
+
+        conn.query(qry, [id], (err,row) => {
+            console.log(row);
+            res.send(row);
+            res.end();
+        });
+    }
 }
