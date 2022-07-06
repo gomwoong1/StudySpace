@@ -15,3 +15,6 @@ app.listen(port, () => {
 
 const router = require('./router.js');
 app.use('/', router);
+
+const router2 = require('./router.js');
+app.use('/page_move', router)
