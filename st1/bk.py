@@ -98,3 +98,25 @@
 #     print('D')
 # else:
 #     print('F')
+
+# 윤년 판별
+# year = int(input())
+# if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+#     print(1)
+# else:
+#     print(0)
+
+# 좌표의 사분면 알아내기
+# x = int(input())
+# y = int(input())
+
+# if x > 0:
+#     if y > 0:
+#         print(1)
+#     else:
+#         print(4)
+# else:
+#     if y > 0:
+#         print(2)
+#     else:
+#         print(3)
