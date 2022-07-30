@@ -12,4 +12,7 @@
 # str = 'hello %s' % 'world'
 # int = '%d %d' % (1, 2)
 # fla = '%f' % 3.14
+# 'hello {}'.format('world')
+# '{} X {} = {}'.format(2, 3, 2*3)
+# '{1} X {0} = {2}'.format(2, 3, 2*3)  >> 3 x 2 = 6
 
