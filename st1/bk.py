@@ -136,3 +136,19 @@
 # print(hr,mn)
 
 # https://www.acmicpc.net/problem/2525
+# hr, mn = map(int, input().split())
+# tm = int(input())
+
+# if mn >= 60 - tm:
+#     hr += tm // 60
+#     mn += tm % 60
+# else:
+#     mn += tm
+
+# if mn >= 60:
+#     hr += 1
+#     mn -= 60
+# if hr >= 24:
+#     hr -= 24
+
+# print(hr,mn)
