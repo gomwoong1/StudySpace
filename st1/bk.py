@@ -120,3 +120,19 @@
 #         print(2)
 #     else:
 #         print(3)
+
+# https://www.acmicpc.net/problem/2884
+# hr, mn = map(int, input().split())
+
+# if mn < 45:
+#     if hr == 0:
+#         hr = 23
+#     else:
+#         hr -= 1
+#     mn += 15
+# else:
+#     mn -= 45
+
+# print(hr,mn)
+
+# https://www.acmicpc.net/problem/2525
