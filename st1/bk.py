@@ -12,3 +12,19 @@
 # print('(  /  )')
 # print(' \\(__)|')
 
+# 개를 출력한다.
+# dog = '''|\\_/|
+# |q p|   /}
+# ( 0 )"""\\
+# |"^"`    |
+# ||_/=\\\\__|'''
+# print(dog)
+
+# 첫째 줄에 A+B를 출력한다.
+# a, b = input().split()
+# print(int(a)+int(b))
+
+# 첫째 줄에 A-B를 출력한다.
+# a, b = input().split()
+# print(int(a)-int(b))
+
