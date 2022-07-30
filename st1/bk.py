@@ -49,3 +49,21 @@
 # id = str(input())
 # print(id+'??!')
 
+# 불기 연도를 서기 연도로 변환한 결과를 출력한다.
+# year = int(input())
+# print(year-543)
+
+# 첫째 줄에 (A+B)%C, 둘째 줄에 ((A%C) + (B%C))%C, 셋째 줄에 (A×B)%C, 넷째 줄에 ((A%C) × (B%C))%C를 출력한다
+# a, b, c = map(int, input().split())
+# print((a+b)%c)
+# print(((a%c)+(b%c))%c)
+# print((a*b)%c)
+# print(((a%c)*(b%c))%c)
+
+# https://www.acmicpc.net/problem/2588
+# a = int(input())
+# b = int(input())
+# print(a*(b%10))
+# print(a*int((b/10)%10))
+# print(a*(b//100))
+# print(a*b)
