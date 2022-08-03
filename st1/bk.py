@@ -170,7 +170,5 @@ elif in_list[1] == in_list[2]:
 else:
     for i in in_list:
         if i > bigger:
-            print('i: {}'.format(i))
-            print('bigger: {}'.format(bigger))
-            bigeer = i
+            bigger = i
     print(bigger*100)
