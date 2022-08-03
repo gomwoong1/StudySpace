@@ -156,8 +156,21 @@
 
 # https://www.acmicpc.net/problem/2480
 
-a, b, c = map(int, input().split())
+in_list = list(map(int,input().split()))
+bigger = 0
 
-if a == b == c:
-    print(10000+(a*1000))
-elif 
+if in_list[0] == in_list[1] == in_list[2]:
+    print(10000+(in_list[0]*1000))
+elif in_list[0] == in_list[1]:
+    print(1000+(in_list[0]*100))
+elif in_list[0] == in_list[2]:
+    print(1000+(in_list[0]*100))
+elif in_list[1] == in_list[2]:
+    print(1000+(in_list[1]*100))
+else:
+    for i in in_list:
+        if i > bigger:
+            print('i: {}'.format(i))
+            print('bigger: {}'.format(bigger))
+            bigeer = i
+    print(bigger*100)
