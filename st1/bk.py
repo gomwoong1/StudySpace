@@ -179,6 +179,13 @@
 # print(1-kn, 1-qe, 2-lk, 2-bs, 2-nt, 8-ph)
 
 # 입력받은 정수의 구구단을 출력
-a = int(input())
-for b in range(1,10):
-    print('{} * {} = {}'.format(a, b, a*b))
+# a = int(input())
+# for b in range(1,10):
+#     print('{} * {} = {}'.format(a, b, a*b))
+
+# https://www.acmicpc.net/problem/10950
+num = int(input())
+
+for _ in range(num):
+    a, b = map(int,input().split())
+    print(a+b)
