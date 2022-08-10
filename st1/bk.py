@@ -156,19 +156,25 @@
 
 # https://www.acmicpc.net/problem/2480
 
-in_list = list(map(int,input().split()))
-bigger = 0
+# in_list = list(map(int,input().split()))
+# bigger = 0
 
-if in_list[0] == in_list[1] == in_list[2]:
-    print(10000+(in_list[0]*1000))
-elif in_list[0] == in_list[1]:
-    print(1000+(in_list[0]*100))
-elif in_list[0] == in_list[2]:
-    print(1000+(in_list[0]*100))
-elif in_list[1] == in_list[2]:
-    print(1000+(in_list[1]*100))
-else:
-    for i in in_list:
-        if i > bigger:
-            bigger = i
-    print(bigger*100)
+# if in_list[0] == in_list[1] == in_list[2]:
+#     print(10000+(in_list[0]*1000))
+# elif in_list[0] == in_list[1]:
+#     print(1000+(in_list[0]*100))
+# elif in_list[0] == in_list[2]:
+#     print(1000+(in_list[0]*100))
+# elif in_list[1] == in_list[2]:
+#     print(1000+(in_list[1]*100))
+# else:
+#     for i in in_list:
+#         if i > bigger:
+#             bigger = i
+#     print(bigger*100)
+
+# https://www.acmicpc.net/problem/3003
+
+# kn, qe, lk, bs, nt, ph = map(int, input().split())
+# print(1-kn, 1-qe, 2-lk, 2-bs, 2-nt, 8-ph)
+
