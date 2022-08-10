@@ -184,8 +184,32 @@
 #     print('{} * {} = {}'.format(a, b, a*b))
 
 # https://www.acmicpc.net/problem/10950
-num = int(input())
+# num = int(input())
 
-for _ in range(num):
-    a, b = map(int,input().split())
-    print(a+b)
+# for _ in range(num):
+#     a, b = map(int,input().split())
+#     print(a+b)
+
+# 1부터 n까지 합을 출력한다.
+# sum = 0
+# for i in range(1,int(input())+1):
+#     sum += i
+# print(sum)
+
+# 영수증 검증
+# sum = 0
+# price = int(input())
+# for _ in range(int(input())):
+#     pri, count = map(int, input().split())
+#     sum += pri*count
+# if sum == price:
+#     print('Yes')
+# else:
+#     print('No')
+
+# https://www.acmicpc.net/problem/15552
+# import sys
+# for _ in range(int(input())):
+#     a, b = map(int, sys.stdin.readline().split())
+#     print(a+b)
+
