@@ -213,3 +213,25 @@
 #     a, b = map(int, sys.stdin.readline().split())
 #     print(a+b)
 
+# 좀 더 이쁘게 출력
+# import sys
+# for i in range(int(input())):
+#     a, b = map(int, sys.stdin.readline().split())
+#     print('Case #{}: {}'.format(i+1, a+b))
+
+# 좀 좀 더 이쁘게 출력
+# import sys
+# for i in range(int(input())):
+#     a, b = map(int, sys.stdin.readline().split())
+#     print('Case #{}: {} + {} = {}'.format(i+1, a, b, a+b))
+
+# 별 찍기
+# for i in range(1,int(input())+1):
+#     print('*'*i)
+
+# 오른쪽 정렬하여 별 찍기
+# max = int(input())
+# for i in range(1, max+1):
+#     str = '*'*i
+#     print(str.rjust(max))
+
