@@ -370,3 +370,70 @@
 #             score = 0
 #     print(total)
 
+# https://www.acmicpc.net/problem/4344
+
+# val = int(input())
+# for _ in range(val):
+#     avg = 0
+#     per = 0
+#     nums = list(map(int,input().split()))
+#     avg = sum(nums[1:])/nums[0]
+#     for i in nums[1:]:
+#         if i > avg:
+#             per += 1
+#     per = per/nums[0]*100
+
+#     print('{:.3f}%'.format(per))
+
+# https://www.acmicpc.net/problem/15596
+# sum = 0
+# def solve(a):
+#     val = 0
+#     for i in a:
+#         val += i
+#     return val
+
+# nums = list(map(int,input().split()))
+# sum = solve(nums)
+
+# 문자를 아스키코드로 변환
+# print(ord(input()))
+
+# https://www.acmicpc.net/problem/11720
+# val = int(input())
+# nums = list(map(int,input()))
+# print(sum(nums))
+
+# 한 단어에서 각 알파벳이 처음 등장하는 위치를 찾는 문제
+# nums = []
+
+# string = list(map(ord,input()))
+# for i in range(97, 123):
+#     try:
+#         if string.index(i) <= 100:
+#             nums.append(string.index(i))
+#     except:
+#         nums.append(-1)
+# print(*nums)
+
+# https://www.acmicpc.net/problem/2675
+# import sys
+
+# for _ in range(int(sys.stdin.readline())):
+#     string =''
+#     val, in_list = input().split()
+#     for i in in_list:
+#         string += i*int(val)
+#     print(string)
+
+# 주어진 단어에서 가장 많이 사용된 알파벳을 출력하는 문제
+
+import sys
+string = list(sys.stdin.readline().lower())
+count = 0
+count2 = 0
+char = ''
+
+for i in range(97, 123):
+    for j in string:
+        count += j.count(chr(i))
