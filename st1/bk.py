@@ -301,7 +301,56 @@
 # print(cnt)
 
 # 최대, 최소값 구하기
-max = 0
-min = 1000000
+# maxi = 1
+# mini = 1000000
 
-val = 
+# val = int(input())
+# nums = list(map(int,input().split()))
+
+# for i in nums:
+#     if i > maxi:
+#         maxi = i
+#     if i < mini:
+#         mini = i
+# print(mini,maxi)
+
+# val = int(input())
+# nums = list(map(int,input().split()))
+# print(min(nums),max(nums))
+
+# 최대값과 위치 구하기
+# nums = []
+# for _ in range(9):
+#     nums.append(int(input()))
+# print(max(nums))
+# print(nums.index(max(nums))+1)
+
+# 서로 다른 나머지 구하기
+# nums = []
+# result = []
+
+# for _ in range(10):
+#     nums.append(int(input())%42)
+
+# for i in nums:
+#     if i not in result:
+#         result.append(i)
+# print(len(result))
+
+# nums = []
+
+# for _ in range(10):
+#     a = int(input())%42
+#     if a not in nums:
+#         nums.append(a)
+
+# print(len(nums))
+
+# 성적 조작
+# sum = 0
+# val = int(input())
+# nums = list(map(int,input().split()))
+
+# for i in nums:
+#     sum += i/max(nums)*100
+# print(sum/val)
