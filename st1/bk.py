@@ -354,3 +354,19 @@
 # for i in nums:
 #     sum += i/max(nums)*100
 # print(sum/val)
+
+# OX 퀴즈의 결과를 일차원 배열로 입력받아 점수를 계산하는 문제
+# val = int(input())
+
+# for _ in range(val):
+#     score = 0
+#     total = 0
+#     nums = list(input())
+#     for i in nums:
+#         if i == 'O':
+#             score += 1
+#             total += score
+#         else:
+#             score = 0
+#     print(total)
+
