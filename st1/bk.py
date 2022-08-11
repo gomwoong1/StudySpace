@@ -429,11 +429,17 @@
 # 주어진 단어에서 가장 많이 사용된 알파벳을 출력하는 문제
 
 import sys
-string = list(sys.stdin.readline().lower())
-count = 0
+string = list(sys.stdin.readline().upper())
 count2 = 0
 char = ''
 
-for i in range(97, 123):
-    for j in string:
-        count += j.count(chr(i))
+for i in range(65, 91):
+    if chr(i) in string:
+        count = 0
+        count += string.count(chr(i))
+        if count > count2:
+            char = chr(i)
+            count2 = count
+        elif count == count2:
+            char = '?'
+print(char)
