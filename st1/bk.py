@@ -235,3 +235,73 @@
 #     str = '*'*i
 #     print(str.rjust(max))
 
+# https://www.acmicpc.net/problem/10871
+# import sys
+# print_list = []
+# max, num = map(int, input().split())
+# list = list(map(int, sys.stdin.readline().split()))
+
+# for i in list:
+#     if i < num:
+#         print_list.append(i)
+# print(*print_list)
+
+# 0 0이 들어올 때까지 A+B를 출력하는 문제
+# while True:
+#     a, b = map(int, input().split())
+#     if a == 0 and b == 0:
+#         break
+#     else:
+#         print(a+b)
+
+# 입력이 끝날 때까지 A+B를 출력하는 문제. EOF에 대해 알아 보세요
+# while True:
+#     try:
+#         a, b = map(int, input().split())
+#         print(a+b)
+#     except:
+#         break
+
+# 원래 수로 돌아올 때까지 연산을 반복하는 문제
+# count = 1
+# val = input()
+# val2 = ''
+# next_num = ''
+
+# if len(val) == 1:
+#     val2 = val.zfill(2)
+#     val = val2
+# else:
+#     val2 = val
+
+# while True:
+#     next_num = str(int(val2[0])+int(val2[1]))
+#     if len(next_num) == 2:
+#         next_num = next_num[1]
+#     if val2[1]+next_num == val:
+#         break
+#     else:
+#         count += 1
+#         val2 = val2[1]+next_num
+
+# print(count)
+
+# in_val = int(input())
+# cnt = 0
+# num = in_val
+
+# while True:
+#     a = num // 10
+#     b = num % 10
+#     c = (a+b) % 10
+#     num = (b*10)+c
+#     cnt += 1
+#     if num == in_val:
+#         break
+# print(cnt)
+
+# 최대, 최소값 구하기
+max = 0
+min = 1000000
+
+val = 
