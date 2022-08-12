@@ -428,18 +428,24 @@
 
 # 주어진 단어에서 가장 많이 사용된 알파벳을 출력하는 문제
 
-import sys
-string = list(sys.stdin.readline().upper())
-count2 = 0
-char = ''
+# import sys
+# string = list(sys.stdin.readline().upper())
+# count2 = 0
+# char = ''
 
-for i in range(65, 91):
-    if chr(i) in string:
-        count = 0
-        count += string.count(chr(i))
-        if count > count2:
-            char = chr(i)
-            count2 = count
-        elif count == count2:
-            char = '?'
-print(char)
+# for i in range(65, 91):
+#     if chr(i) in string:
+#         count = 0
+#         count += string.count(chr(i))
+#         if count > count2:
+#             char = chr(i)
+#             count2 = count
+#         elif count == count2:
+#             char = '?'
+# print(char)
+
+# 단어의 개수를 구하는 문제
+# import sys
+# string = list(sys.stdin.readline().split())
+# print(len(string))
+
