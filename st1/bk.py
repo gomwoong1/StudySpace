@@ -458,25 +458,25 @@
 # print(a) if a>b else print(b)
 
 # 규칙에 따라 문자에 대응하는 수를 출력하는 문제
-time = 0
-string = list(input().upper())
+# time = 0
+# string = list(input().upper())
 
-for i in string:
-    match i:
-        case 'A' | 'B' | 'C':
-            time += 3
-        case 'D' | 'E' | 'F':
-            time += 4
-        case 'G' | 'H' | 'I':
-            time += 5
-        case 'J' | 'K' | 'L':
-            time += 6
-        case 'M' | 'N' | 'O':
-            time += 7
-        case 'P' | 'Q' | 'R' | 'S':
-            time += 8
-        case 'T' | 'U' | 'V':
-            time += 9
-        case 'W' | 'X' | 'Y' | 'Z':
-            time += 10
-print(time)
+# for i in string:
+#     match i:
+#         case 'A' | 'B' | 'C':
+#             time += 3
+#         case 'D' | 'E' | 'F':
+#             time += 4
+#         case 'G' | 'H' | 'I':
+#             time += 5
+#         case 'J' | 'K' | 'L':
+#             time += 6
+#         case 'M' | 'N' | 'O':
+#             time += 7
+#         case 'P' | 'Q' | 'R' | 'S':
+#             time += 8
+#         case 'T' | 'U' | 'V':
+#             time += 9
+#         case 'W' | 'X' | 'Y' | 'Z':
+#             time += 10
+# print(time)
