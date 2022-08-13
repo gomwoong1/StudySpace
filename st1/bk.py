@@ -480,3 +480,12 @@
 #         case 'W' | 'X' | 'Y' | 'Z':
 #             time += 10
 # print(time)
+
+# 팰린드롬인지 확인하기
+string = list(input())
+rv_string = ''.join(reversed(string))
+
+if ''.join(string) == rv_string:
+    print(1)
+else:
+    print(0)
