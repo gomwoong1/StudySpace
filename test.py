@@ -58,7 +58,6 @@
 # -----------------------------------------------------
 
 # 5
-
 # str = input("문자열을 입력하세요")
 # char = input("찾을 문자를 입력하세요")
 
@@ -76,19 +75,36 @@
 # -----------------------------------------------------
 
 # 6
-
 # 주어진 리스트 안에 있는 단어 중 가장 긴 단어를 찾을 수 있도록 함수를 완성하시오.
 
-words = ["good", "morning", "welcome", "inhatech", "python"]
+# words = ["good", "morning", "welcome", "inhatech", "python"]
 
-def find_longest_word(words):
-    max = 0
-    index = 0
+# def find_longest_word(words):
+#     max = 0
+#     index = 0
 
-    for i in range(0, len(words), 1):
-        if max < len(words[i]):
-            max = len(words[i])
-            index = i
-    return words[index]
+#     for i in range(0, len(words), 1):
+#         if max < len(words[i]):
+#             max = len(words[i])
+#             index = i
+#     return words[index]
 
-print("가장 긴 문자열은", find_longest_word(words), "입니다")
+# print("가장 긴 문자열은", find_longest_word(words), "입니다")
+
+# -----------------------------------------------------
+
+# 7
+
+# 다음 국어, 영어 점수 데이터로 각 학생의 총점과 평균을 구해 출력하시오
+
+# total = 0
+# avg = 0
+# import numpy as np
+# kor = np.array([70,50, 70, 90])
+# eng = np.array([80, 60, 90, 80])
+# print((kor + eng))
+# print(((kor + eng) / 2.0))
+
+# -----------------------------------------------------
+
+# 8
