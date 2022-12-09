@@ -59,16 +59,36 @@
 
 # 5
 
-str = input("문자열을 입력하세요")
-char = input("찾을 문자를 입력하세요")
+# str = input("문자열을 입력하세요")
+# char = input("찾을 문자를 입력하세요")
 
-def get_find(char, str):
-    cnt = 0
-    for i in range(0, len(str), 1):
-        if (str[i] == char):
-            return cnt
-        else:
-            cnt += 1
-    return -1
+# def get_find(char, str):
+#     cnt = 0
+#     for i in range(0, len(str), 1):
+#         if (str[i] == char):
+#             return cnt
+#         else:
+#             cnt += 1
+#     return -1
 
-print("결과값은", get_find(char, str), "입니다")
+# print("결과값은", get_find(char, str), "입니다")
+
+# -----------------------------------------------------
+
+# 6
+
+# 주어진 리스트 안에 있는 단어 중 가장 긴 단어를 찾을 수 있도록 함수를 완성하시오.
+
+words = ["good", "morning", "welcome", "inhatech", "python"]
+
+def find_longest_word(words):
+    max = 0
+    index = 0
+
+    for i in range(0, len(words), 1):
+        if max < len(words[i]):
+            max = len(words[i])
+            index = i
+    return words[index]
+
+print("가장 긴 문자열은", find_longest_word(words), "입니다")
