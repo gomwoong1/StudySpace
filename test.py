@@ -21,9 +21,9 @@
 #         return False
 
 # if(is_even(a)):
-#     print("짝수입니다.")
+#     print("입력값은 짝수입니다.")
 # else:
-#     print("홀수입니다.")
+#     print("입력값은 홀수입니다.")
 
 #-----------------------------------------------------
 
@@ -46,3 +46,29 @@
 
 # 4
 
+# str = input()
+
+# def get_prefix(str):
+#     index = str.find("-")
+#     return str[:index]
+
+# result = get_prefix(str)
+# print(result)
+
+# -----------------------------------------------------
+
+# 5
+
+str = input("문자열을 입력하세요")
+char = input("찾을 문자를 입력하세요")
+
+def get_find(char, str):
+    cnt = 0
+    for i in range(0, len(str), 1):
+        if (str[i] == char):
+            return cnt
+        else:
+            cnt += 1
+    return -1
+
+print("결과값은", get_find(char, str), "입니다")
