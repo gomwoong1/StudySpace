@@ -1,30 +1,36 @@
 package winter_study;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.IOException;
 
 public class std_3 {
+
+	private static String result;
 
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		int cnt = Integer.parseInt(br.readLine());
+		String[] str = new String[cnt];
 		
-		String str = br.readLine();
-		String str2 = br.readLine();
-		String str3 = br.readLine();
-		String result = "";
+		for(int i = 0; i < cnt; i++) {
+			str[i] = br.readLine();
+		}
 		
-		for(int i = 0; i < str.length(); i++) {
-			char a = str.charAt(i), b = str2.charAt(i), c = str3.charAt(i);
-			if (a == b && a == c)
-				result += a;
+		result = "";
+		
+		wordCompare(str[0], str[1]);
+		wordCompare(str[2], result);
+		System.out.println(result);
+	}
+	
+	private static void wordCompare(String target, String target2) {
+		for(int i = 0; i < target.length(); i++) {
+			if (target.charAt(i) == target2.charAt(i))
+				result += target.charAt(i);
 			else
 				result += '?';
 		}
-		
-		System.out.println(result);
 	}
-
 }
