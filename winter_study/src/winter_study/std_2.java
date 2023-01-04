@@ -38,7 +38,7 @@ public class std_2 {
 		}
 		
 		for(String i : result)
-		System.out.println(i);
+			System.out.println(i);
 		br.close();
 	}
 }
