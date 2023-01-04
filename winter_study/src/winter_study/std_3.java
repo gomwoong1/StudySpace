@@ -22,12 +22,17 @@ public class std_3 {
 	
 	private static String wordCompare(String[] target) {
 		String temp = "";
+		char[] alpha = new char[2];
 		
 		for(int i = 0; i < target[0].length(); i++) {
-			if (target.charAt(i) == target2.charAt(i) && target.charAt(i) == target3.charAt(i))
-				temp += target.charAt(i);
-			else
-				temp += '?';
+			int cnt = 0;
+			
+			for (String s : target) {
+				alpha[cnt] = s.charAt(i);
+				cnt++;
+			}
+			
+			
 		}
 		
 		return temp;
