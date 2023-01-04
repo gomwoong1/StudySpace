@@ -6,8 +6,6 @@ import java.io.IOException;
 
 public class std_3 {
 
-	private static String result;
-
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -18,19 +16,20 @@ public class std_3 {
 			str[i] = br.readLine();
 		}
 		
-		result = "";
-		
-		wordCompare(str[0], str[1]);
-		wordCompare(str[2], result);
+		String result = wordCompare(str);
 		System.out.println(result);
 	}
 	
-	private static void wordCompare(String target, String target2) {
-		for(int i = 0; i < target.length(); i++) {
-			if (target.charAt(i) == target2.charAt(i))
-				result += target.charAt(i);
+	private static String wordCompare(String[] target) {
+		String temp = "";
+		
+		for(int i = 0; i < target[0].length(); i++) {
+			if (target.charAt(i) == target2.charAt(i) && target.charAt(i) == target3.charAt(i))
+				temp += target.charAt(i);
 			else
-				result += '?';
+				temp += '?';
 		}
+		
+		return temp;
 	}
 }
