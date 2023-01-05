@@ -32,7 +32,10 @@ public class std_3 {
 				cnt++;
 			}
 			
-			
+			if (alpha[0] == alpha[1])
+				temp += alpha[0];
+			else
+				temp += '?';
 		}
 		
 		return temp;
