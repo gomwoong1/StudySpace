@@ -8,9 +8,24 @@ public class std_3_1 {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String str = br.readLine();
-
+		char[] str = br.readLine().toUpperCase().toCharArray();
+		int count = 0, max = 0;
+		char result;
 		
+		for(int i = 65; i <= 91; i++) {
+			count = 0;
+			for (int j : str) {
+				if (i == j) {
+					count += 1;
+					if (count > max) {
+						result = 
+					}
+				}
+					
+			}
+		}
+		
+		System.out.println();
 	}
 
 }
