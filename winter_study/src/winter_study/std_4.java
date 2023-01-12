@@ -20,11 +20,13 @@ public class std_4 {
 		
 		while(true) {
 			if ( val.length() == 1)
-				val = "0" + origin;
-			
+				val = "0" + val;
+	
 			sum = Character.getNumericValue(val.charAt(0)) + Character.getNumericValue(val.charAt(1));
-			nextVal = (val.charAt(1) + String.valueOf(sum).substring(1));
-			val = nextVal;
+//			nextVal = String.valueOf(val.charAt(1)) + String.valueOf(sum%10);
+//			val = nextVal;
+			val = String.valueOf(val.charAt(1)) + String.valueOf(sum%10);
+//			val = nextVal;
 			count++;
 			
 			if(val.equals(origin))
