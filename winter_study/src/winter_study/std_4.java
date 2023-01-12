@@ -18,12 +18,18 @@ public class std_4 {
 		else
 			val = origin;
 		
-		while(val.equals(origin)) {
+		System.out.println("길이: " + val.length() + ", 값: " + val);
+		System.out.println(val.charAt(0) + ", " + val.charAt(1));
+		
+		while(true) {
 			sum = Character.getNumericValue(val.charAt(0)) + Character.getNumericValue(val.charAt(1));
-			val = (val.charAt(1) + String.valueOf(sum));
+//			val = (val.charAt(1) + String.valueOf(sum).substring(1));
+			val = (val.charAt(1) + String.valueOf(sum).substring(0, (int)((Math.log10(sum)+1)-1)));
 			count++;
 			
-			System.out.println("val값: " + val.charAt(1) + ", sum값: " + Integer.toString(sum).substring(1) + "/... " +sum);
+			if(val.equals(nextVal))
+				break;
+//			System.out.println("val값: " + val.charAt(1) + ", sum값: " + String.valueOf(sum) + "/... " +val);
 //			System.out.println("origin: " + origin + ", val값: " + nextVal + ", sum값: " + sum + ", count: " + count);
 		}
 		
