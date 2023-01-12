@@ -28,6 +28,7 @@ public class std_3_1 {
 		}
 		
 		System.out.println(result);
+		br.close();
 	}
 
 }

@@ -18,6 +18,7 @@ public class std_3 {
 		
 		String result = wordCompare(str);
 		System.out.println(result);
+		br.close();
 	}
 	
 	private static String wordCompare(String[] target) {
