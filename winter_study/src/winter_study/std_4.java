@@ -20,7 +20,7 @@ public class std_4 {
 		else
 			val = origin;
 		
-		while(true) {
+		do {
 			if ( val.length() == 1)
 				val = "0" + val;
 			
@@ -28,10 +28,7 @@ public class std_4 {
 			val = String.valueOf(val.charAt(1)) + String.valueOf(sum%10);
 			
 			count++;
-			
-			if(val.equals(origin))
-				break;
-		}
+		} while(!val.equals(origin));
 		
 		System.out.println(count);
 		br.close();
