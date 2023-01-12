@@ -21,11 +21,17 @@ public class std_4 {
 		while(true) {
 			if ( val.length() == 1)
 				val = "0" + val;
-	
+			
+			System.out.println("???"+val.charAt(0));
+			
 			sum = Character.getNumericValue(val.charAt(0)) + Character.getNumericValue(val.charAt(1));
 //			nextVal = String.valueOf(val.charAt(1)) + String.valueOf(sum%10);
-//			val = nextVal;
 			val = String.valueOf(val.charAt(1)) + String.valueOf(sum%10);
+			
+//			System.out.println("!!!"+nextVal);
+//			val = nextVal;
+			System.out.println("~~~"+val);
+//			val = String.valueOf(val.charAt(1)) + String.valueOf(sum%10);
 //			val = nextVal;
 			count++;
 			
