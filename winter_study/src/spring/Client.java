@@ -12,5 +12,11 @@ public class Client {
 		System.out.println();
 		
 		nabi.playWithOwner();
+		
+		Dog ba2 = new Dog();
+
+		System.out.println();
+		System.out.println();
+		
 	}
 }
