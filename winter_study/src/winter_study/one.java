@@ -6,4 +6,8 @@ public class one {
 	static int def;
 	static protected int pro;
 	static public int pub;
+	
+	public void run() {
+		
+	}
 }
