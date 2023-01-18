@@ -2,13 +2,11 @@ package winter_study;
 
 public class test {
 	public static void main(String[] args) {
-		mouse jerry = new mouse();
-		
-		jerry.countTail = 10;
-		jerry.name = "제리";
-		jerry.age = 81;
-		
-		jerry = null;
+		System.out.println("이것은 클래스 메서드 입니다.");
+	}
+	
+	public void study() {
+		System.out.println("이것은 인스턴스 메서드 입니다.");
 	}
 }
 
