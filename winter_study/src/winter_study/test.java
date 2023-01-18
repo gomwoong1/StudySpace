@@ -2,18 +2,21 @@ package winter_study;
 
 public class test {
 	public static void main(String[] args) {
-		int i = 10;
+		mouse jerry = new mouse();
 		
-		if (i == 10) {
-			int m = i + 5;
-			i = m;
-		}
+		jerry.countTail = 10;
+		jerry.name = "제리";
+		jerry.age = 81;
 		
-		else {
-			int j = i + 10;
-			i = j;
-		}
-		
-		System.out.println(i);
+		jerry = null;
+	}
+}
+
+class mouse {
+	int age, countTail;
+	String name;
+	
+	public void sing() {
+		System.out.println("찍찍!");
 	}
 }
