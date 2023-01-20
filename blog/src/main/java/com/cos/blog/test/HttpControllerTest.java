@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 // browser에서 get 요청은 가능하지만 그 외에 요청은 불가능 -> http 405 Error
 // 따라서 별도의 툴이 필요함.
+
+// 전송받은 값과 객체(오브젝트) 간 자동 매핑해주는 건 MessageConverter가 담당(스프링)
+// Body에 데이터를 보내면 오브젝트에 간편하게 매핑 가능. (@RequestBody 어노테이션 통해서)
 
 @RestController
 public class HttpControllerTest {
@@ -32,6 +36,7 @@ public class HttpControllerTest {
          단, 입력받지 않은 인스턴스 변수는 String -> null, int는 Error 400을 출력한다.
 	*/
 	
+	// (3)
 	@GetMapping("/http/get")
 	public String getTest(Member m) {
 		return "get 요청: " + m.getId() + ", " + m.getUsername() +", "+ m.getPassword() +", "+ m.getEmail();
@@ -46,6 +51,8 @@ public class HttpControllerTest {
 	//	public String getTest(@RequestParam int id, @RequestParam String username) {	
 	//		return "get 요청: " + id + ", " + username;
 	//	}
+	// ------------------------------------------------------------------
+	
 	
 	// insert
 	
@@ -53,20 +60,43 @@ public class HttpControllerTest {
 		NOTE
 		
 		(1) 원형이다.
-			원형에서 파라미터에 @RequestParam type name도 당연히 된다.
+			원형에서 파라미터에 어노테이션과 자료형의 타입, 이름을 붙여서 받는 것도 된다.
+			단, post방식은 어노테이션이 @RequestBody 이다.
+			또한 @RequestBody 자료형 text <- text일 필요가 없다. GET과는 다른 점.
 			
-		(2) 
+		(2) HTML에서 <Form> 태그를 이용하여 데이터를 던질 때. 
+		    (postman) x-www-form-urlencoded
+		
+		(3) (postman) row-text / (MIME): text/plain
+		    파라미터는 @RequestBody String text 
+		
+		(4) (postman) row-json / (MIME): application/json
+			파라미터는 @RequestBody Member m 
+			파라미터에 오브젝트를 입력하면 스프링이 그대로 json과 매핑해줌.
+			JSON이 아니라 일반 문자열을 전송하면 매핑 불가로 인해 오류 발생
 	*/
 	
+	// (4)
 	@PostMapping("/http/post")
-	public String postTest(Member m) {
-		return "post 요청";
+	public String postTest(@RequestBody Member m) {
+		return "post 요청: " + m.getId() + ", " + m.getUsername() +", "+ m.getPassword() +", "+ m.getEmail();
 	}
 	
 	// (1) 원형
 	//	public String postTest() {
 	//		return "post 요청";
 	//	}
+	
+	// (2)
+	//	public String postTest(Member m) {
+	//		return "post 요청: " + m.getId() + ", " + m.getUsername() +", "+ m.getPassword() +", "+ m.getEmail();
+	//	}
+	
+	// (3)
+	//	public String postTest(@RequestBody String text) {
+	//		return "post 요청: " + text;
+	//	}
+	// -------------------------------------------------------------------
 	
 	// update
 	@PutMapping("/http/put")
