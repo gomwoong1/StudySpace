@@ -1,3 +1,5 @@
+// 가장 먼저 실습한 것. [3~4강]
+
 package com.cos.blog.test;
 
 import org.springframework.web.bind.annotation.GetMapping;
