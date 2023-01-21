@@ -1,4 +1,6 @@
 // 13~14강 실습 (HTTP 4대 요청)
+// 16강 실습
+
 package com.cos.blog.test;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +23,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HttpControllerTest {
 	
+	// 16강 사용 코드
+	private final static String TAG = "HttpControllerTest";
+	
+	// 16강 사용 메서드
+	@GetMapping("/http/lombok")
+	public String lombokTest() {
+		Member m = new Member(1, "gomwoong", "1234", "gomwoong@naver.com");
+		System.out.println(TAG+" getter: " + m.getId());
+		m.setId(5000);
+		System.out.println(TAG+" getter: " + m.getId());
+		
+		return "lombok 테스트 완료";
+	}
+	
+	
 	// select
 	
 	/*
@@ -42,17 +59,19 @@ public class HttpControllerTest {
 		return "get 요청: " + m.getId() + ", " + m.getUsername() +", "+ m.getPassword() +", "+ m.getEmail();
 	}
 	
-	// (1)
-	//	public String getTest() {
-	//		return "get 요청";
-	//	}
+	/*
+	    (1)
+		public String getTest() {
+			return "get 요청";
+		}
 	
-	//  (2)
-	//	public String getTest(@RequestParam int id, @RequestParam String username) {	
-	//		return "get 요청: " + id + ", " + username;
-	//	}
-	// ------------------------------------------------------------------
-	
+	    (2)
+		public String getTest(@RequestParam int id, @RequestParam String username) {	
+			return "get 요청: " + id + ", " + username;
+		}
+		
+	 ------------------------------------------------------------------
+	*/ 
 	
 	// insert
 	
@@ -82,22 +101,24 @@ public class HttpControllerTest {
 		return "post 요청: " + m.getId() + ", " + m.getUsername() +", "+ m.getPassword() +", "+ m.getEmail();
 	}
 	
-	// (1) 원형
-	//	public String postTest() {
-	//		return "post 요청";
-	//	}
+	/*
+	    (1) 원형
+		public String postTest() {
+			return "post 요청";
+		}
 	
-	// (2)
-	//	public String postTest(Member m) {
-	//		return "post 요청: " + m.getId() + ", " + m.getUsername() +", "+ m.getPassword() +", "+ m.getEmail();
-	//	}
+	    (2)
+		public String postTest(Member m) {
+			return "post 요청: " + m.getId() + ", " + m.getUsername() +", "+ m.getPassword() +", "+ m.getEmail();
+		}
 	
-	// (3)
-	//	public String postTest(@RequestBody String text) {
-	//		return "post 요청: " + text;
-	//	}
-	// -------------------------------------------------------------------
-	
+	    (3)
+		public String postTest(@RequestBody String text) {
+			return "post 요청: " + text;
+		}
+	 -------------------------------------------------------------------
+	*/
+	 
 	// update
 	@PutMapping("/http/put")
 	public String putTest() {
