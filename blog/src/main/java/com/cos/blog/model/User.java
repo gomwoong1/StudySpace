@@ -25,12 +25,14 @@ import org.hibernate.annotations.CreationTimestamp;
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	오토 인크리먼트 넘버링 전략을 해당 프로젝에 연결된 DB의 연결된 전략을 따라간다는 것.
 	오라클 사용 -> 시퀀스, MySQL 사용 -> 오토 인크리먼트 따라 간다는 의미
+	오토 인크리먼트 설정도 겸하는 듯?
 	
 	@Column(nullable = false, length=n)
 	널값 허용하지 않고, 길이는 n까지만.
 	
 	@ColumnDefault("'user'")
 	문자인 경우 쌍따옴표 내부에 따옴표를 삽입해야 함.
+	문자가 아니라면 따옴표 필요 없음.
 	디폴트값을 설정
 	
 	@CreationTimestamp
