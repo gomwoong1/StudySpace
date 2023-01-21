@@ -16,6 +16,11 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /*
  	NOTE
  	
@@ -30,12 +35,18 @@ import org.hibernate.annotations.CreationTimestamp;
  	Many = Board 클래스,  One = user 필드
  	한 명의 유저는 여러 개의 게시글을 쓸 수 있다.  /  여러 개의 게시글은 한 명의 유저에게 쓰일 수 있다.
  	
+ 	전자는 항상 클래스,  후자는 항상 연관관계를 맺는 필드를 뜻함.
+ 	
  	DB는 오브젝트 타입을 저장할 수 없기 때문에 FK (Foreign Key, 외래키)를 사용한다
  	자바는 오브젝트를 저장할 수 있다. 이러한 차이점으로부터 충돌이 발생한다.
  	때문에 자바에서 데이터베이스의 자료형에 맞춰서 테이블을 생성하게 된다.
  	
  */
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 public class Board {
 	
@@ -57,5 +68,5 @@ public class Board {
 	private User user;
 	
 	@CreationTimestamp
-	private Timestamp creatDate;
+	private Timestamp createDate;
 }

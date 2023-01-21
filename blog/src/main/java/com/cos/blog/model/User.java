@@ -13,6 +13,11 @@ import javax.persistence.Id;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /*
  	ORM: Object -> table로 매핑해주는 기술.
  
@@ -39,6 +44,10 @@ import org.hibernate.annotations.CreationTimestamp;
 	현재 시스템시간 자동 insert
  */
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 public class User {
 	@Id
