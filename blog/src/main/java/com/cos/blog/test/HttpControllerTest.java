@@ -26,10 +26,25 @@ public class HttpControllerTest {
 	// 16강 사용 코드
 	private final static String TAG = "HttpControllerTest";
 	
-	// 16강 사용 메서드
-	@GetMapping("/http/lombok")
+	/*
+	(1) 16강 사용 메서드 - 빌더 어노테이션 사용 전 
+	
 	public String lombokTest() {
 		Member m = new Member(1, "gomwoong", "1234", "gomwoong@naver.com");
+		System.out.println(TAG+" getter: " + m.getId());
+		m.setId(5000);
+		System.out.println(TAG+" getter: " + m.getId());
+		
+		return "lombok 테스트 완료";
+	}
+	
+	*/
+	
+	// (2) 16강 사용 메서드 - 빌더 어노테이션 사용
+	@GetMapping("/http/lombok")
+	public String lombokTest() {
+		Member m = Member.builder().username("gomwoong").password("1234")
+				.email("gomwoong@naver.com").build();
 		System.out.println(TAG+" getter: " + m.getId());
 		m.setId(5000);
 		System.out.println(TAG+" getter: " + m.getId());

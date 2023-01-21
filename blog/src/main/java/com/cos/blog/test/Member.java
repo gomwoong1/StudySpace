@@ -6,7 +6,10 @@
 
 package com.cos.blog.test;
 
+import org.springframework.web.bind.annotation.GetMapping;
+
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 // import lombok.NoArgsConstructor;
 // import lombok.RequiredArgsConstructor;
@@ -31,14 +34,30 @@ import lombok.Data;
 // @NoArgsConstructor
 // 기본 생성자
 
+// @Bulider
+// 빌더 패턴 자동 생성해줌
+// 장점1. 생성자의 파라미터 순서를 지키지 않아도 됨. 생성자의 매개변수를 기억하지 않아도 된다는 것과 일맥상통.
+// 장점2. 오토 인크리먼트와 같은 역할도 가능한 듯?
+
 @Data
-@AllArgsConstructor
 public class Member {
 
 	private int id;
 	private String username;
 	private String password;
 	private String email;
+	
+	// @AllArgsConstructor와 동일함. lombok의 자동화냐 직접 생성이냐 차이.
+	@Builder
+	public Member(int id, String username, String password, String email) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+	}
+	
+	
 	
 // (2)
 // 상수시키는 이유 -> 어차피 DB에서 데이터 들고 올거니까 불변성 유지를 위해서.
