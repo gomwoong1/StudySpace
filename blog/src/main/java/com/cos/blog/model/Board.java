@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,9 +47,18 @@ import lombok.NoArgsConstructor;
  	Reply는 @JoinColumn이 필요 없다.
  	하나의 게시글에 여러 개의 댓글이 달릴 경우, FK가 존재하면
  	FK는 여러 개가 된다. 이는 1정규화가 위배된 것으로, @JoinColumn이 필요없는 이유가 된다.
- 	단, @OneToMany 뒤 (mappedBy = "board")가 붙어야 한다.
+ 	
+ 	단, @OneToMany 뒤 (mappedBy = "board")가 붙어야 한다.  (인자값은 필드값을 적어야 한다.)
  	mappedBy는 연관관계의 주인이 아님을 나타낸다. (FK가 아니라는 뜻)
- 	따라서 DB에 컬럼을 만들지 말라는 의미가 되며, 인자값으로 입력된 board가 FK가 된다.
+ 	따라서 DB에 컬럼을 만들지 말라는 의미가 되며, 인자값으로 입력된 Reply.board가 FK가 된다.
+ 	단지 join을 통해 값을 얻기 위함을 뜻하기도 한다.
+ 	
+ 	@ManyToOne은 join을 통해 들고올게 하나밖에 없다는 뜻이다. 
+ 	때문에 기본 fetch 전략은 EAGER이다. 무조건 하나 join해 오라는 뜻이다.
+ 	
+ 	@OneToMany는 무작정 join을 수행하면 데이터가 1개가 될 수도, 1만개 될 수도 있다.
+ 	때문에 필요에 따라 join할지 말지를 정하기 때문에 기본 fetch 전략은 LAZY다. 
+ 	여기선 UI가 무조건 댓글이 보이는 구조이기 때문에 fetch를 EAGER로 설정한다.
  */
 
 @Data
@@ -75,7 +85,7 @@ public class Board {
 	@JoinColumn(name="userId")
 	private User user;
 	
-	@OneToMany(mappedBy = "board")
+	@OneToMany(mappedBy = "board",  fetch = FetchType.EAGER)
 	private List<Reply> reply;
 	
 	@CreationTimestamp
