@@ -3,6 +3,7 @@
 package com.cos.blog.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -41,6 +43,12 @@ import lombok.NoArgsConstructor;
  	자바는 오브젝트를 저장할 수 있다. 이러한 차이점으로부터 충돌이 발생한다.
  	때문에 자바에서 데이터베이스의 자료형에 맞춰서 테이블을 생성하게 된다.
  	
+ 	Reply는 @JoinColumn이 필요 없다.
+ 	하나의 게시글에 여러 개의 댓글이 달릴 경우, FK가 존재하면
+ 	FK는 여러 개가 된다. 이는 1정규화가 위배된 것으로, @JoinColumn이 필요없는 이유가 된다.
+ 	단, @OneToMany 뒤 (mappedBy = "board")가 붙어야 한다.
+ 	mappedBy는 연관관계의 주인이 아님을 나타낸다. (FK가 아니라는 뜻)
+ 	따라서 DB에 컬럼을 만들지 말라는 의미가 되며, 인자값으로 입력된 board가 FK가 된다.
  */
 
 @Data
@@ -66,6 +74,9 @@ public class Board {
 	@ManyToOne
 	@JoinColumn(name="userId")
 	private User user;
+	
+	@OneToMany(mappedBy = "board")
+	private List<Reply> reply;
 	
 	@CreationTimestamp
 	private Timestamp createDate;
