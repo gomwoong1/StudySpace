@@ -22,12 +22,14 @@ import com.cos.blog.repository.UserRepository;
 @RestController
 public class DummyControllerTest {
 	
+	// 의존성 주입(DI)
 	@Autowired
 	private UserRepository userRepository;
 	
 	@PostMapping("/dummy/join")
 	public String join(User user) {
 		
+		userRepository.save(user);
 		return "회원가입이 완료되었습니다.";
 	}
 }
