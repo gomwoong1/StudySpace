@@ -77,6 +77,7 @@ public class User {
 	
 	// enum을 쓰는게 좋음. enum은 도메인 설정이 가능하기 때문. (범위지정, 즉 오타낼 수 없음)
 	// DB엔 RoleType이라는 자료형이 없음. 때문에 해당 enum값이 string임을 나타내는 어노테이션 추가
+	// @ColumnDefault("user")
 	@Enumerated(EnumType.STRING)
 	private RoleType role;  
 	
