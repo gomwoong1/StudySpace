@@ -6,12 +6,15 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,9 +42,18 @@ import lombok.NoArgsConstructor;
 	문자인 경우 쌍따옴표 내부에 따옴표를 삽입해야 함.
 	문자가 아니라면 따옴표 필요 없음.
 	디폴트값을 설정
+	초기 DB를 구축할 때 DDL 용으로 사용하는 것이지, null값이면 디폴트값을 넣으라는 어노테이션이 아님!
 	
 	@CreationTimestamp
 	현재 시스템시간 자동 insert
+	
+	@DynamicInsert
+	null인 값은 insert 쿼리문에 포함하지 않겠다는 것.
+	이를 통해 default 값을 가진 role에 user 값을 기입할 수 있게 함.
+	강의에선 어노테이션 덕지덕지 붙는게 싫어서 안씀. 알려만 줌.
+	
+	@Enumerated(EnumType.STRING)
+	해당 enum 자료형이 string 자료형임을 나타냄 (DB엔 enum 자료형이 없기 때문)
  */
 
 @Data
@@ -63,9 +75,10 @@ public class User {
 	@Column(nullable = false, length= 50)
 	private String email;
 	
-	//enum을 쓰는게 좋음. enum은 도메인 설정이 가능하기 때문. (범위지정, 즉 오타낼 수 없음)
-	@ColumnDefault("'user'")
-	private String role;  
+	// enum을 쓰는게 좋음. enum은 도메인 설정이 가능하기 때문. (범위지정, 즉 오타낼 수 없음)
+	// DB엔 RoleType이라는 자료형이 없음. 때문에 해당 enum값이 string임을 나타내는 어노테이션 추가
+	@Enumerated(EnumType.STRING)
+	private RoleType role;  
 	
 	@CreationTimestamp
 	private Timestamp createDate;
