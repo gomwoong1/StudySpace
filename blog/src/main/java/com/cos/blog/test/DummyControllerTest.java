@@ -1,6 +1,9 @@
 // 24강 insert 테스트 클래스
+// 26강 select 테스트
+// 27강 다중 select 테스트
 package com.cos.blog.test;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +89,8 @@ public class DummyControllerTest {
 			}
 		});
 		
+		// user 객체를 웹 브라우저는 이해할 수 없음.
+		// 때문에 스프링부트의 Message Converter가 json 라이브러리 호출해 자동으로 json으로 변환후 전달
 		return user;
 		/*
 		 	람다식
@@ -94,5 +99,10 @@ public class DummyControllerTest {
 		 		return new IllegalArgumentException("해당 사용자는 없습니다.");
 		 	});
 		 */
+	}
+	
+	@GetMapping("/dummy/user")
+	public List<User> list(){
+		return userRepository.findAll();
 	}
 }
