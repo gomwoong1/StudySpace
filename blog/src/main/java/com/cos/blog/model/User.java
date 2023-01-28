@@ -35,8 +35,8 @@ import lombok.NoArgsConstructor;
 	오라클 사용 -> 시퀀스, MySQL 사용 -> 오토 인크리먼트 따라 간다는 의미
 	오토 인크리먼트 설정도 겸하는 듯?
 	
-	@Column(nullable = false, length=n)
-	널값 허용하지 않고, 길이는 n까지만.
+	@Column(nullable = false, length=n, unique = true)
+	널값 허용하지 않고, 길이는 n까지만. 중복값은 허용하지 않는다.
 	
 	@ColumnDefault("'user'")
 	문자인 경우 쌍따옴표 내부에 따옴표를 삽입해야 함.
@@ -66,7 +66,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;  // 오토 인크리먼트 적용
 	
-	@Column(nullable = false, length= 30)
+	@Column(nullable = false, length= 30, unique = true)
 	private String username;
 	
 	@Column(nullable = false, length=100)
