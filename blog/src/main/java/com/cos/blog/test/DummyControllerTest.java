@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -154,7 +155,7 @@ public class DummyControllerTest {
 	public String delete(@PathVariable int id) {
 		try {
 			userRepository.deleteById(id);
-		} catch (IllegalArgumentException e) {
+		} catch (EmptyResultDataAccessException e) {
 			return "삭제에 실패하였습니다. 해당 id는 DB에 없습니다.";
 		}
 		return "삭제 되었습니다.";
