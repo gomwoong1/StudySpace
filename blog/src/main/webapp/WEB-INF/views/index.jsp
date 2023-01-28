@@ -21,10 +21,10 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">로그인</a>
+        <a class="nav-link" href="/user/login">로그인</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">회원가입</a>
+        <a class="nav-link" href="/user/join">회원가입</a>
       </li> 
     </ul>
   </div>  
@@ -32,9 +32,20 @@
 <br>
 
 <div class="container">
- 
+ 	<div class="card m-2" >
+  		<div class="card-body">
+    		<h4 class="card-title">제목 적는 부분</h4>
+    		<p class="card-text">내용 적는 부분</p>
+    		<a href="#" class="btn btn-primary">상세보기</a>
+  		</div>
+	</div>
 </div>
 
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <p>Create By Gomwoong</p>
+  <p>📞010-1111-2222</p>
+  <p>🏴인천광역시 미추홀구 용현동</p>
+</div>
 </body>
 </html>
 
