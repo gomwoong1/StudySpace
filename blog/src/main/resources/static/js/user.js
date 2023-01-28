@@ -6,7 +6,14 @@ let index = {
 	},
 	
 	save: function() {
-		alert("user의 save 메서드 호출됨.");
+		let data = {
+			username: $("#username").val(),
+			password: $("#password").val(),
+			email: $("#email").val()
+		}
+		
+		// ajax 통신을 이용해서 3개의 데이터를 json으로 변경 후 insert 요청할 것
+		$.ajax().done().fail();  
 	}
 }
 
