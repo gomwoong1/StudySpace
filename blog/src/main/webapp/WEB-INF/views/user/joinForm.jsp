@@ -4,7 +4,7 @@
 
 <div class="container">
 
-	<form action="/action_page.php">
+	<form>
 		<div class="form-group">
 			<label for="Username">Username</label> <input type="text" class="form-control" placeholder="Enter username" id="username">
 		</div>
@@ -14,11 +14,11 @@
 		<div class="form-group">
 			<label for="password">Password:</label> <input type="password" class="form-control" placeholder="Enter password" id="password">
 		</div>
-		
-		<button type="submit" class="btn btn-primary">회원가입</button>
 	</form>
+		
+	<button id="btn_save" class="btn btn-primary">회원가입</button>
 
 </div>
 
-
+<script src="/blog/js/user.js"></script>
 <%@ include file="../layout/footer.jsp"%>
