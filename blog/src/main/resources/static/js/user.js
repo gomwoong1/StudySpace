@@ -22,7 +22,8 @@ let index = {
 			dataType: "json"   // 서버에게 요청 후 응답이 왔을 때, 반환된 데이터의 형식을 json으로 지정함.
 		}).done(function(resp) {
 			alert("회원가입이 완료되었습니다.");
-			location.href="/blog";
+			console.log(resp);
+			/*location.href="/blog";*/
 		}).fail(function(error) {
 			alert(JSON.stringify(error));
 		});  
