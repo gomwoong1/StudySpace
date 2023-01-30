@@ -11,7 +11,7 @@
 		<div class="form-group">
 			<label for="password">Password:</label> <input type="password" class="form-control" placeholder="Enter password" id="password">
 		</div>
-		
+
 		<div class="form-group form-check">
 			<label class="form-check-label"> <input class="form-check-input" type="checkbox"> Remember me
 			</label>
@@ -21,5 +21,5 @@
 
 </div>
 
-<script src="/blog/js/user.js"></script>
+<script src="/js/user.js"></script>
 <%@ include file="../layout/footer.jsp"%>
