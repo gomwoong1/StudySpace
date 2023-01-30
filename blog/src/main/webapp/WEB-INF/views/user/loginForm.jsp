@@ -17,7 +17,7 @@
 			</label>
 		</div>
 	</form>
-	<button type="btn-login" class="btn btn-primary">로그인</button>
+	<button id="btn_login" class="btn btn-primary">로그인</button>
 
 </div>
 

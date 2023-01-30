@@ -19,6 +19,14 @@ public class UserApiController {
 	@Autowired
 	private UserService userService;
 	
+	/*
+		해당 방식도 가능하고, 파라미터에 넣어서 호출하는 것도 가능.
+		스프링 컨테이너에 session도 bean으로 등록되어 있다는 뜻.
+		
+		@Autowired
+		private HttpSession session;
+	 */
+	
 	@PostMapping("/api/user")
 	public ResponseDto<Integer> save(@RequestBody User user) {
 		
