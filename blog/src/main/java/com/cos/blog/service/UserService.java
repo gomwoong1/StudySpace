@@ -17,13 +17,10 @@ import com.cos.blog.repository.UserRepository;
  	
  */
 
-@Service
-public class UserService {
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Transactional
+/*
+ 	폐기 코드
+ 	
+ 	@Transactional
 	public int 회원가입(User user) {
 		try {
 			userRepository.save(user);
@@ -33,6 +30,18 @@ public class UserService {
 			System.out.println("UserSerivce: 회원가입() : " + e.getMessage());
 		}
 		return -1;
+	}
+ */
+
+@Service
+public class UserService {
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Transactional
+	public void 회원가입(User user) {
+			userRepository.save(user);
 	}
 	
 	

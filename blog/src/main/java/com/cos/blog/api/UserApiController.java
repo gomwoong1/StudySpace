@@ -23,9 +23,9 @@ public class UserApiController {
 		System.out.println("UserApiController: save 호출됨.");
 		
 		user.setRole(RoleType.USER);
-		int result = userService.회원가입(user);
+		userService.회원가입(user);
 		
-		return new ResponseDto<Integer>(HttpStatus.OK.value(), result);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 	
 	@PostMapping("/api/user/login")
@@ -33,6 +33,6 @@ public class UserApiController {
 		System.out.println("UserApiController: login 호출됨.");
 
 		User principal = userService.로그인(user);
-		return new ResponseDto<Integer>(HttpStatus.OK.value(), result);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 }
