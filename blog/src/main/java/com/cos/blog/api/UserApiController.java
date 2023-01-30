@@ -27,4 +27,12 @@ public class UserApiController {
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), result);
 	}
+	
+	@PostMapping("/api/user/login")
+	public ResponseDto<Integer> login(@RequestBody User user) {
+		System.out.println("UserApiController: login 호출됨.");
+
+		User principal = userService.로그인(user);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), result);
+	}
 }
