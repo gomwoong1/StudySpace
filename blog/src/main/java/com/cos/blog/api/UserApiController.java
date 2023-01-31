@@ -27,7 +27,7 @@ public class UserApiController {
 		private HttpSession session;
 	 */
 	
-	@PostMapping("/api/user")
+	@PostMapping("/auth/joinProc")
 	public ResponseDto<Integer> save(@RequestBody User user) {
 		
 		System.out.println("UserApiController: save 호출됨.");
@@ -39,6 +39,7 @@ public class UserApiController {
 	}
 	
 	/*  시큐리티 사용에 따른 미사용
+	 *  전통적인 로그인 방식
 	@PostMapping("/api/user/login")
 	public ResponseDto<Integer> login(@RequestBody User user, HttpSession session) {
 		System.out.println("UserApiController: login 호출됨.");

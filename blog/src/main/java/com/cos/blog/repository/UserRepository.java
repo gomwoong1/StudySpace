@@ -16,14 +16,16 @@ import com.cos.blog.model.User;
  	이제 하위 인터페이스는 자동으로 메모리에 뜬다.
  */
 public interface UserRepository extends JpaRepository<User, Integer>{
-	// JPA Naming 전략
-	// select * from user where username = ? and password = ?;
-	User findByUsernameAndPassword(String username, String password);
 	
-	/*
+}
+
+// JPA Naming 전략
+// select * from user where username = ? and password = ?;
+//User findByUsernameAndPassword(String username, String password);
+
+/*
 		위의 코드와 이 코드는 동일한 동작을 수행함.
 		
 		@Query(value="select * from user where username=? and password=?", nativeQuery=true)
 		User login(String username, String password);
-	*/
-}
+ */
