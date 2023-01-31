@@ -26,6 +26,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
+	/*
+	 	request가 요청될 때 경로가 /auth/하위라면 접근을 허용
+	 	나머지 경로는 접근 거부
+	 	그리고 로그인은 폼 로그인 방식이며 인증이 필요하다면 /auth/loginForm 으로 화면을 이동시킴
+	 */
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -33,6 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/auth/**")
 			.permitAll()
 			.anyRequest()
-			.authenticated();
+			.authenticated()
+		.and()
+			.formLogin()
+			.loginPage("/auth/loginForm");
 	}
 }
