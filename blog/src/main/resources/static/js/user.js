@@ -3,9 +3,11 @@ let index = {
 		$("#btn_save").on("click", () => {
 			this.save();
 		});
+		/*
 		$("#btn_login").on("click", () => {
 			this.login();
 		});
+		*/
 	},
 	
 	save: function() {
@@ -13,7 +15,7 @@ let index = {
 			username: $("#username").val(),
 			password: $("#password").val(),
 			email: $("#email").val()
-		}
+		};
 		
 		// ajax 통신을 이용해서 3개의 데이터를 json으로 변경 후 insert 요청할 것
 		// ajax는 비동기 호출이기 때문에 ajax 하단의 코드를 실행하다가 done 혹은 fail 수행
