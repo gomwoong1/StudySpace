@@ -1,10 +1,12 @@
 package com.cos.blog.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 /*
  	빈 등록: 스프링 컨테이너에서 객체를 관리할 수 있게 하는 것
@@ -24,7 +26,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig {
 	
 	/*
 	 	request가 요청될 때 경로가 /auth/하위라면 접근을 허용
@@ -32,16 +34,38 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	 	그리고 로그인은 폼 로그인 방식이며 인증이 필요하다면 /auth/loginForm 으로 화면을 이동시킴
 	 */
 	
+	/*
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.antMatchers("/auth/**")
+				.antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**")
+				.permitAll()
+				.anyRequest()
+				.authenticated()
+			.and()
+				.formLogin()
+				.loginPage("/auth/loginForm");
+	} */
+	
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+		http
+		  .authorizeHttpRequests()
+		    .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**")
 			.permitAll()
 			.anyRequest()
 			.authenticated()
-		.and()
-			.formLogin()
-			.loginPage("/auth/loginForm");
+		  .and()
+		    .formLogin()
+		    .loginPage("/auth/loginForm");
+		
+		return http.build();
+	}
+	
+	// return 하는 해시 암호값을 IoC하게 됨 -> 스프링이 관리하게 된다는 뜻.
+	@Bean
+	public BCryptPasswordEncoder encodePWD() {
+		return new BCryptPasswordEncoder();
 	}
 }
