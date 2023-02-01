@@ -51,6 +51,7 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 		http
+		  .csrf().disable()  // csrf 토큰 비활성화 (테스트시 걸어두는게 좋음)
 		  .authorizeHttpRequests()
 		    .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**")
 			.permitAll()
@@ -58,7 +59,10 @@ public class SecurityConfig {
 			.authenticated()
 		  .and()
 		    .formLogin()
-		    .loginPage("/auth/loginForm");
+		    .loginPage("/auth/loginForm")
+		    .loginProcessingUrl("/auth/loginProc")  // 시큐리티가 해당 주소로 요청오는 로그인을 가로채 대신 로그인 (form방식, name= username, password)
+		    .defaultSuccessUrl("/");   // 요청 성공시 리다이렉트 url
+		    // .failureUrl("/auth/loginForm");   요청 실새피 리다이렉트 url
 		
 		return http.build();
 	}
