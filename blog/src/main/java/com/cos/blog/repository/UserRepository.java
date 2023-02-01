@@ -1,6 +1,9 @@
 // 24강 - insert 테스트 인터페이스
 package com.cos.blog.repository;
 
+import java.security.cert.PKIXRevocationChecker.Option;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -17,6 +20,9 @@ import com.cos.blog.model.User;
  */
 public interface UserRepository extends JpaRepository<User, Integer>{
 	
+	// JPA Naming
+	// SELECT * FROM user WHERE username = username; 
+	Optional<User> findByUsername(String username);
 }
 
 // JPA Naming 전략
