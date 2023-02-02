@@ -36,6 +36,13 @@ public class BoardController {
 		model.addAttribute("board", boardService.글상세보기(id));  
 		return "board/detail";
 	}
+	
+	@GetMapping("/board/{id}/updateForm")
+	public String updateForm(@PathVariable int id, Model model) {
+		model.addAttribute("boardData", boardService.글상세보기(id));
+		return "board/updateForm";
+	}
+	
 	/*  principal로 로그인 사용자 정보 받아오기
 	@GetMapping({"","/"})
 	public String index(@AuthenticationPrincipal PrincipalDetail principal) {
