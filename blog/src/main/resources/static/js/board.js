@@ -3,6 +3,9 @@ let index = {
 		$("#btn_save").on("click", () => {
 			this.save();
 		});
+		$("#btn_delete").on("click", () => {
+			this.deleteById();
+		});
 	},
 	
 	save: function() {
@@ -21,6 +24,21 @@ let index = {
 			dataType: "json"   // 서버에게 요청 후 응답이 왔을 때, 반환된 데이터의 형식을 json으로 지정함.
 		}).done(function(resp) {
 			alert("글쓰기가 완료되었습니다.");
+			location.href="/";
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+		});  
+	}, 
+	
+	deleteById: function() {
+		let id = $("#id").text();
+		
+		$.ajax({
+			type: "DELETE",
+			url: "/api/board/"+id,
+			dataType: "json"   // 서버에게 요청 후 응답이 왔을 때, 반환된 데이터의 형식을 json으로 지정함.
+		}).done(function(resp) {
+			alert("삭제가 완료되었습니다.");
 			location.href="/";
 		}).fail(function(error) {
 			alert(JSON.stringify(error));
