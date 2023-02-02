@@ -1,17 +1,24 @@
 package com.cos.blog.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.cos.blog.config.auth.PrincipalDetail;
+import com.cos.blog.service.BoardService;
 
 @Controller
 public class BoardController {
 
+	@Autowired
+	BoardService boardService;
+	
 	@GetMapping({"","/"})
-	public String index() {
-		return "index";
+	public String index(Model model) {
+		model.addAttribute("boards", boardService.글목록());  // "/" 요청시 model에 board에 글을 전부 가져옴
+		return "index";  // 컨트롤러는 리턴할 때 viewResolver가 작동. <- 해당 index 페이지에 model의 정보를 들고 이동함.
 	}
 	
 	@GetMapping("/board/saveForm")

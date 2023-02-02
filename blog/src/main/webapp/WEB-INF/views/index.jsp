@@ -5,26 +5,14 @@
 
 <div class="container">
 	
- 	<div class="card m-2" >
-  		<div class="card-body">
-    		<h4 class="card-title">제목 적는 부분</h4>
-    		<a href="#" class="btn btn-primary">상세보기</a>
-  		</div>
-	</div>
-	
-	<div class="card m-2" >
-  		<div class="card-body">
-    		<h4 class="card-title">제목 적는 부분</h4>
-    		<a href="#" class="btn btn-primary">상세보기</a>
-  		</div>
-	</div>
-	
-	<div class="card m-2" >
-  		<div class="card-body">
-    		<h4 class="card-title">제목 적는 부분</h4>
-    		<a href="#" class="btn btn-primary">상세보기</a>
-  		</div>
-	</div>
+	<c:forEach var="board" items="${boards}">   <!-- 컨트롤러에서 넘어온 model 정보 -->
+	 	<div class="card m-2" >
+	  		<div class="card-body">
+	    		<h4 class="card-title">${boards.title}</h4>   <!-- board 클래스의 getter 호출 -->
+	    		<a href="#" class="btn btn-primary">${boards.content}</a>
+	  		</div>
+		</div>
+	</c:forEach>
 	
 </div>
 
