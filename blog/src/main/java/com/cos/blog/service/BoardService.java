@@ -58,7 +58,8 @@ public class BoardService {
 		board.setContent(requestBoard.getContent());
 	}
 	
-	public void 댓글쓰기(int boardId, Reply requestReply, User user) {
+	@Transactional
+	public void 댓글쓰기(User user, int boardId, Reply requestReply) {
 		Board board = boardRepository.findById(boardId).orElseThrow(()->{
 			return new IllegalArgumentException("댓글쓰기 실패: 게시글 ID를 찾을 수 없습니다.");
 		});

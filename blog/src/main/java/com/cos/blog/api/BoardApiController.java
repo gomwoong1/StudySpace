@@ -46,8 +46,8 @@ public class BoardApiController {
 	}
 	
 	@PostMapping("api/board/{id}/reply")
-	public ResponseDto<Integer> replySave(@PathVariable int boardId, @RequestBody Reply reply, @AuthenticationPrincipal PrincipalDetail principal){
-		boardService.댓글쓰기(boardId, reply, principal.getUser());
+	public ResponseDto<Integer> replySave	(@PathVariable int boardId, @RequestBody Reply reply, @AuthenticationPrincipal PrincipalDetail principal){
+		boardService.댓글쓰기(principal.getUser(), boardId, reply);
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
