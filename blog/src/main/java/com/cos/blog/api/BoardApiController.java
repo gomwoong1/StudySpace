@@ -48,7 +48,7 @@ public class BoardApiController {
 	
 	//DTO 이용한 방법
 	@PostMapping("api/board/{boardId}/reply")
-	public ResponseDto<Integer> replySave	(@PathVariable ReplySaveRequestDto replySaveRequestDto){
+	public ResponseDto<Integer> replySave	(@RequestBody ReplySaveRequestDto replySaveRequestDto){
 		boardService.댓글쓰기(replySaveRequestDto);
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
