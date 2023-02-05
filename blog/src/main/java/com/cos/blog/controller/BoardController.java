@@ -16,7 +16,7 @@ public class BoardController {
 
 	@Autowired
 	BoardService boardService;
-	
+		
 	@GetMapping({"","/"})
 	public String index(Model model, @PageableDefault(size=3, sort="id", direction = Sort.Direction.DESC) Pageable pageable) {
 		model.addAttribute("boards", boardService.글목록(pageable));  // "/" 요청시 model에 board에 글을 전부 가져옴
