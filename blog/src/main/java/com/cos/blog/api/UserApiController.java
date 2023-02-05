@@ -48,18 +48,8 @@ public class UserApiController {
 	}
 	
 	@PutMapping("/user")
-	public ResponseDto<Integer> update(@RequestBody User user, @AuthenticationPrincipal PrincipalDetail principal,
-			HttpSession session) {
+	public ResponseDto<Integer> update(@RequestBody User user) {
 		userService.회원수정(user);
-		
-		// 세션 내부에 저장된 정보를 변경하려면 강제로 새로 만든 후 삽입해줘야 함.
-		Authentication authentication =
-				new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities());
-		
-		SecurityContext securityContext = SecurityContextHolder.getContext();
-		securityContext.setAuthentication(authentication);
-		
-		session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}

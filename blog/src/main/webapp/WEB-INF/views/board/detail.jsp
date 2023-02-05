@@ -25,6 +25,14 @@
 		<div>${board.content}</div>
 	</div>
 	<hr>
+	
+	<div>
+		<div>
+			<div><textarea class="form-control" row="1"></textarea></div>
+			<div></div>
+		</div>
+	</div>
+	
 </div>
 
 <script src="/js/board.js"></script>
