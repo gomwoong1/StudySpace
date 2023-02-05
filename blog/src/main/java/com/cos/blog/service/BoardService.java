@@ -100,4 +100,11 @@ public class BoardService {
 		replyRepository.save(requestReply);
 	}
 	*/
+	
+	/*repository에 메서드 만들고 사용하는 방법
+		@Transactional
+		public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
+		replyRepository.mSave(replySaveRequestDto.getUserId(), replySaveRequestDto.getBoardId(), replySaveRequestDto.getContent());
+		}
+	*/
 }
