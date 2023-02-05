@@ -15,16 +15,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /*
  	NOTE
@@ -63,7 +64,9 @@ import lombok.NoArgsConstructor;
  	여기선 UI가 무조건 댓글이 보이는 구조이기 때문에 fetch를 EAGER로 설정한다.
  */
 
-@Data
+//@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -89,6 +92,7 @@ public class Board {
 	
 	@OneToMany(mappedBy = "board",  fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({"board"})
+//	@OrderBy("id desc")
 	private List<Reply> replys;
 	
 	@CreationTimestamp
