@@ -54,6 +54,13 @@ public class BoardApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 	
+	@DeleteMapping("api/board/{boardId}/reply/{replyId}")
+	public ResponseDto<Integer> replyDelete	(@PathVariable int replyId){
+		boardService.댓글삭제(replyId);
+		
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
 	// 데이터 받을 때 컨트롤러에서 DTO를 만들어서 받는게 좋음. 
 	/* 강의에서 첫번째로 사용한 방법
 	@PostMapping("api/board/{boardId}/reply")

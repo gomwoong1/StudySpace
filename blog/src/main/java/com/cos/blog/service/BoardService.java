@@ -87,6 +87,11 @@ public class BoardService {
 		replyRepository.save(reply);
 	}
 	
+	@Transactional
+	public void 댓글삭제(int replyId) {
+		replyRepository.deleteById(replyId);
+	}
+	
 	/*  강의에서 첫 번째로 사용한 DTO 사용하지 않고 save한 방법
 	@Transactional
 	public void 댓글쓰기(User user, int boardId, Reply requestReply) {
