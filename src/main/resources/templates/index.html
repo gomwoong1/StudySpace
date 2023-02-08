@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:with="tt=${value2}">
+    <h1>timeleaf Test Page</h1><br>
+    <span th:text="${value}"></span><br>
+    [[${value}]]
+    <ul>
+        <li id="test" th:text="${value}"></li>
+        <li>[[${value}]]</li>
+    </ul>
+    <input th:text="${tt}" type="text"><br>
+    <input value="[[${value}]]" type="text">
+
+<!-- 타임리프가 해석하지 않게 해줌, (th: inline) -->
+<!-- 타임리프가 해석함 (escape), (th: text) -->
+<!-- 타임리프가 해석함 (unescape), (th: utext) -->
+<!-- 지역변수로 사용, (th: with="변수명="${}") -->
+</body>
+</html>
