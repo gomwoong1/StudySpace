@@ -15,11 +15,12 @@ import java.sql.Timestamp;
 @Data
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, length = 30, unique = true)
+    @Column(nullable = false, unique = true, length = 20)
     private String username;
 
     @Column(nullable = false, length = 100)
@@ -31,13 +32,18 @@ public class User {
     @Column(nullable = false, length = 2)
     private String sex;
 
-    @Column(nullable = false, length = 13)
-    private String phone;
-
     @Enumerated(EnumType.STRING)
     private RoleType role;
+
+    @Column(nullable = false, length = 13)
+    private String phone;
 
     @CreationTimestamp
     private Timestamp createDate;
 
+//    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+//    private Board board;
+//
+//    @OneToMany(mappedBy = "reply", fetch = FetchType.EAGER)
+//    private Reply reply;
 }
