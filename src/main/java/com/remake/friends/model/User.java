@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @Data
 @Entity
 public class User {
-
+    // 어노테이션 공부중
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
