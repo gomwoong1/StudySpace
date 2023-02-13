@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Builder
 @NoArgsConstructor
@@ -15,7 +16,7 @@ import java.sql.Timestamp;
 @Data
 @Entity
 public class User {
-    // 어노테이션 공부중
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,24 +27,27 @@ public class User {
     @Column(nullable = false, length = 100)
     private String password;
 
+    @Column(nullable = false, length = 10)
+    private String name;
+
     @Column(nullable = false, length = 50)
     private String email;
 
     @Column(nullable = false, length = 2)
     private String sex;
 
-    @Enumerated(EnumType.STRING)
-    private RoleType role;
-
     @Column(nullable = false, length = 13)
     private String phone;
+
+    @Enumerated(EnumType.STRING)
+    private RoleType role;
 
     @CreationTimestamp
     private Timestamp createDate;
 
-//    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
-//    private Board board;
-//
-//    @OneToMany(mappedBy = "reply", fetch = FetchType.EAGER)
-//    private Reply reply;
+    @OneToMany(mappedBy = "id")
+    private List<Board> posts;
+
+    @OneToMany(mappedBy = "user")
+    private List<Reply> replys;
 }
