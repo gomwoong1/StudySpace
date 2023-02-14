@@ -18,4 +18,9 @@ public class UserService {
         user.setRole(RoleType.USER);
         userRepository.save(user);
     }
+
+    @Transactional(readOnly = true)
+    public User 로그인(User user) {
+        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+    }
 }
