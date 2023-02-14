@@ -1,5 +1,6 @@
 package com.remake.friends.service;
 
+import com.remake.friends.model.RoleType;
 import com.remake.friends.model.User;
 import com.remake.friends.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class UserService {
 
     @Transactional
     public void 회원가입(User user){
-
+        user.setRole(RoleType.USER);
         userRepository.save(user);
     }
 }
