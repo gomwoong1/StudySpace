@@ -18,14 +18,14 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/")
+                    .antMatchers("/", "/auth/**", "/js/**", "/images/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated()
                 .and()
                     .formLogin()
-                    .loginPage("/user/login")
-                    .loginProcessingUrl("/api/login")
+                    .loginPage("/auth/login")
+                    .loginProcessingUrl("/auth/login")
                     .defaultSuccessUrl("/");
 
         return http.build();

@@ -15,14 +15,14 @@ public class UserApiController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/api/join")
+    @PostMapping("/auth/join")
     public ResponseDto<Integer> join(@RequestBody User user){
         userService.회원가입(user);
 
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
-    @PostMapping("/api/login")
+    @PostMapping("/auth/login")
     public ResponseDto<Integer> login(@RequestBody User user){
         userService.로그인(user);
 

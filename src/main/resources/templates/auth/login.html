@@ -22,7 +22,7 @@
               <a class="nav-link" href="#">비밀번호 찾기</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/user/join">회원가입</a>
+              <a class="nav-link" href="/auth/join">회원가입</a>
             </li>
           </ul>
         </div>
@@ -67,7 +67,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "/api/login",
+                    url: "/auth/login",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json"
