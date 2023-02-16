@@ -21,11 +21,4 @@ public class UserApiController {
 
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
-
-    @PostMapping("/auth/login")
-    public ResponseDto<Integer> login(@RequestBody User user){
-        userService.로그인(user);
-
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
-    }
 }

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -16,18 +17,23 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf().disable()
-                .authorizeRequests()
-                    .antMatchers("/", "/auth/**", "/js/**", "/images/**")
-                    .permitAll()
-                    .anyRequest()
-                    .authenticated()
-                .and()
-                    .formLogin()
-                    .loginPage("/auth/login")
-                    .loginProcessingUrl("/auth/login")
-                    .defaultSuccessUrl("/");
+            .csrf().disable()
+            .authorizeRequests()
+                .antMatchers("/", "/auth/**", "/js/**", "/images/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+            .and()
+                .formLogin()
+                .loginPage("/auth/login")
+                .loginProcessingUrl("/auth/login")
+                .defaultSuccessUrl("/");
 
         return http.build();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder encodePWD(){
+        return new BCryptPasswordEncoder();
     }
 }
