@@ -1,46 +1,58 @@
 package com.gpt.servicegpt.config.auth;
 
+import com.gpt.servicegpt.model.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Getter
 public class UserDetail implements UserDetails {
 
-    @Override
-    public String getPassword() {
-        return null;
+    private User user;
+
+    UserDetail(User user){
+        this.user = user;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return user.getUsername();
+    }
+
+    @Override
+    public String getPassword() {
+        return user.getPassword();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+
+        Collection<GrantedAuthority> collections = new ArrayList<>();
+        collections.add( () -> { return "ROLE_" + user.getRole(); });
+
+        return collections;
     }
 }
