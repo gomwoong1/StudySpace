@@ -18,6 +18,7 @@
     --header-bg-color: #1c1c24;
     --body-color: #fff;
 }
+
 .header {
     display: flex;
     align-items: center;
@@ -97,17 +98,6 @@
     border-right: 2px solid #d6d6db;
 }
 
-/*.user-menu:before{*/
-/*    position: absolute;*/
-/*    content: "";*/
-/*    width: 7px;*/
-/*    height: 7px;*/
-/*    border-radius: 50%;*/
-/*    border: 2px solid var(--header-bg-color);*/
-/*    right: 6px;*/
-/*    top: -1px;*/
-/*    background-color: var(--active-color);*/
-/*}*/
 .user-profile {
     width: 32px;
     height: 32px;

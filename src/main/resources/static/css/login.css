@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+* {
+    outline: none;
+    box-sizing: border-box;
+}
+
+:root {
+    --body-bg-color: #e5ecef;
+    --login-bg-color: #fff;
+    --body-color: #2f2f33;
+    --active-color: #0162ff;
+    --body-font: 'Gowun Dodum', sans-serif;
+}
+
+.dark-mode {
+    --body-bg-color: #1d1d1d;
+    --header-bg-color: #1c1c24;
+    --body-color: #fff;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--body-bg-color);
+    font-size: 15px;
+    color: var(--body-color);
+    font-family: var(--body-font);
+    margin: 0px;
+}
+
+.loginArea {
+    position: absolute;
+    background-color: var(--login-bg-color);
+    top: 50%;
+    left: 50%;
+    transform:  translate(-50%, -50%);
+    width: 40%;
+    height: 50%;
+    border-radius: 20px;
+}
+
+.loginArea #left {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    background-color: rgb(120, 161, 226);
+    border-radius: 20px 0 0 20px;
+}
+
+.loginArea #right {
+    position: absolute;
+    left: 40%;
+    width: 60%;
+    height: 100%;
+}

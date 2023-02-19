@@ -4,11 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <script src="//code.jquery.com/jquery-3.5.1.js"></script>
+    <link href="../css/login.css" rel="stylesheet" type="text/css">
     <title>로그인</title>
 </head>
 <body>
-    <header>
+    <div class="loginArea">
+        <div id="left">
 
-    </header>
+        </div>
+        <div id="right">
+            로그인
+            <form method="post" action="/auth/loginProc">
+                <input name="username" type="text" placeholder="아이디"><br>
+                <input name="password" type="password" placeholder="비밀번호">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
