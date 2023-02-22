@@ -53,13 +53,13 @@ body {
     color: grey;
     font-size: 1.4vw;
     left: 42%;
-    top: 0%;
+    top: 6%;
 }
 
-#left #_id {
+#left #_username {
     position: absolute;
     left: 20%;
-    top: 15%;
+    top: 24%;
     width: 60%;
     height: 7%;
     font-size: 1.2vw;
@@ -72,7 +72,7 @@ body {
 #left #_pwd {
     position: absolute;
     left: 20%;
-    top: 26%;
+    top: 35%;
     width: 28%;
     height: 7%;
     font-size: 1.2vw;
@@ -85,21 +85,8 @@ body {
 #left #_pwdCheck {
     position: absolute;
     left: 52%;
-    top: 26%;
+    top: 35%;
     width: 28%;
-    height: 7%;
-    font-size: 1.2vw;
-    border: 0px;
-    border-bottom: solid 4px #78A1E2;
-    outline: none;
-    text-indent: 5%;
-}
-
-#left #_nickname {
-    position: absolute;
-    left: 20%;
-    top: 37%;
-    width: 60%;
     height: 7%;
     font-size: 1.2vw;
     border: 0px;

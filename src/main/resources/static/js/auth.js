@@ -11,9 +11,20 @@ let index = {
 
     join: function() {
         let data = {
-
+            username: $('#_id').val(),
+            password: $('#_pwd').val(),
+            name: $('#_name').val(),
+            sex: $('#_sex').val(),
+            department: $('#_dept').val(),
+            studentNumber: $('#_stdNumber').val(),
+            phone: $('#_tel').val()
         }
 
+        console.log(JSON.stringify(data));
+        // $.ajax( {
+        //     type: "POST",
+        //     data: JSON
+        // })
     },
 
     login: function() {

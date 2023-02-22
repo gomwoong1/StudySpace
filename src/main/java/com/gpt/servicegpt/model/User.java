@@ -38,6 +38,9 @@ public class User {
     @Column(nullable = false, length = 13)
     private String phone;
 
+    @Column(nullable = false, length = 2)
+    private String sex;
+
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
