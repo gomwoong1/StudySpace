@@ -3,10 +3,6 @@ let index = {
         $('#btn_join').on("click", () => {
             this.join();
         });
-
-        $('#btn_login').on("click", () => {
-            this.login();
-        });
     },
 
     join: function() {
@@ -38,10 +34,6 @@ let index = {
                 alert(JSON.stringify(error));
         });
     },
-
-    login: function() {
-
-    }
 }
 
 index.init();

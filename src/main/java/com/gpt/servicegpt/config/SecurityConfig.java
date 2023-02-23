@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Autowired
-    UserDetailService userDetailService;
+    private UserDetailService userDetailService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -32,12 +32,13 @@ public class SecurityConfig {
         .and()
                 .formLogin()
                 .loginPage("/auth/login")
-                .loginProcessingUrl("/auth/ProcLogin")
-                .defaultSuccessUrl("/");
+                .loginProcessingUrl("/auth/loginProc")
+                .defaultSuccessUrl("/")
 
         return http.build();
     }
 
+    @Bean
     public BCryptPasswordEncoder encPWD(){
         return new BCryptPasswordEncoder();
     }
