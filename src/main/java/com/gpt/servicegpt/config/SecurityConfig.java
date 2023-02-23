@@ -33,7 +33,10 @@ public class SecurityConfig {
                 .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/auth/loginProc")
-                .defaultSuccessUrl("/");
+                .defaultSuccessUrl("/")
+        .and()
+                .logout()
+                .logoutSuccessUrl("/");
 
         return http.build();
     }
