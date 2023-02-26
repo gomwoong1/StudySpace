@@ -1,4 +1,4 @@
-package com.gpt.servicegpt.config.api;
+package com.gpt.servicegpt.api;
 
 import com.gpt.servicegpt.dto.ResponseDto;
 import com.gpt.servicegpt.model.User;
