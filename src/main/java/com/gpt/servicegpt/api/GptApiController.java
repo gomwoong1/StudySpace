@@ -1,7 +1,7 @@
 package com.gpt.servicegpt.api;
 
+import com.gpt.servicegpt.service.OpenAiService;
 import com.theokanning.openai.completion.CompletionRequest;
-import com.theokanning.openai.service.OpenAiService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
