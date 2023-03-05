@@ -74,16 +74,41 @@ public class OpenAiService {
         this.api = api;
     }
 
+    // 내가 작성한 메서드
+
+
+
+
+    // 현재 사용하는 메서드
+    public CompletionResult createCompletion(CompletionRequest request) {
+        return execute(api.createCompletion(request));
+    }
+
+    public static <T> T execute(Single<T> apiCall) {
+        try {
+            return apiCall.blockingGet();
+        } catch (HttpException e) {
+            try {
+                if (e.response() == null || e.response().errorBody() == null) {
+                    throw e;
+                }
+                String errorBody = e.response().errorBody().string();
+
+                OpenAiError error = errorMapper.readValue(errorBody, OpenAiError.class);
+                throw new OpenAiHttpException(error, e, e.code());
+            } catch (IOException ex) {
+                // couldn't parse OpenAI error
+                throw e;
+            }
+        }
+    }
+
     public List<Model> listModels() {
         return execute(api.listModels()).data;
     }
 
     public Model getModel(String modelId) {
         return execute(api.getModel(modelId));
-    }
-
-    public CompletionResult createCompletion(CompletionRequest request) {
-        return execute(api.createCompletion(request));
     }
 
     public EditResult createEdit(EditRequest request) {
@@ -206,24 +231,7 @@ public class OpenAiService {
     /**
      * Calls the Open AI api, returns the response, and parses error messages if the request fails
      */
-    public static <T> T execute(Single<T> apiCall) {
-        try {
-            return apiCall.blockingGet();
-        } catch (HttpException e) {
-            try {
-                if (e.response() == null || e.response().errorBody() == null) {
-                    throw e;
-                }
-                String errorBody = e.response().errorBody().string();
 
-                OpenAiError error = errorMapper.readValue(errorBody, OpenAiError.class);
-                throw new OpenAiHttpException(error, e, e.code());
-            } catch (IOException ex) {
-                // couldn't parse OpenAI error
-                throw e;
-            }
-        }
-    }
 
     public static OpenAiApi buildApi(String token, Duration timeout) {
         ObjectMapper mapper = defaultObjectMapper();
