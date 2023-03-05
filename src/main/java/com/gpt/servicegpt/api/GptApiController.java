@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RequestMapping("/gpt")
 @RestController
 public class GptApiController {
@@ -16,17 +18,13 @@ public class GptApiController {
     @Autowired
     GptService gptService;
 
-    private final String key = "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";
+    private final String api = "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";
+
     @PostMapping("/question")
-    public ResponseEntity<?> sendQuestion() {
-        OpenAiService openAiService = new OpenAiService(key);
-        CompletionRequest completionRequest = CompletionRequest.builder()
-                .prompt("스프링부트는 뭐야?")
-                .model("text-davinci-003")
-                .echo(false)
-                .maxTokens(2048)
-                .temperature(1.0)
-                .build();
-        return ResponseEntity.ok(openAiService.createCompletion(completionRequest).getChoices());
+    public ResponseEntity sendQuestion() {
+
+        ResponseEntity val = gptService.createCompletion(api);
+
+        return val;
     }
 }
