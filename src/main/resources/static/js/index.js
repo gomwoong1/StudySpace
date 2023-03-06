@@ -21,10 +21,10 @@ let index = {
             url: "/gpt/question",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
-            dataType: "json"
+            dataType: "text"
         }).done(function(resp) {
-            alert(JSON.stringify(resp));
-            console.log(JSON.stringify(resp));
+            alert(resp);
+            console.log(resp);
         }).fail(function(error) {
             alert(JSON.stringify(error));
         });

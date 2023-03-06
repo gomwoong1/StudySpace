@@ -16,6 +16,7 @@ public class GptService {
                 .echo(false)
                 .maxTokens(2048)
                 .temperature(1.0)
+                .stream(false)
                 .build();
 
         return ResponseEntity.ok(openAiService.createCompletion(completionRequest).getChoices());
