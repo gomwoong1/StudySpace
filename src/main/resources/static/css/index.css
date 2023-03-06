@@ -114,11 +114,34 @@ body {
     margin: 0px;
 }
 
-#qeustion {
-    
+.QA{
+    display: block;
+    text-align: center;
+    margin-top: 7%;
 }
 
+#qeustion {
+    background-color: var(--header-bg-color);
+    border-radius: 12px;
+    width: 30%;
+    height: 5%;
+    font-family: var(--body-font);
+}
 
 #answer {
+    background-color: var(--header-bg-color);
+    border-radius: 12px;
+    width: 30%;
+    height: 30%;
+    resize: none;
+    font-family: var(--body-font);
+}
 
+#btn_qeustion {
+    background-color: var(--header-bg-color);
+    border-radius: 12px;
+    border-color: var(--body-bg-color);
+    font-family: var(--body-font);
+    height: 5%;
+    width: 5%;
 }

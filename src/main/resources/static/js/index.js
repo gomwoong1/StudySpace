@@ -16,6 +16,8 @@ let index = {
             question: $("#qeustion").val()
         };
 
+        console.log(data);
+
         $.ajax( {
             type: "POST",
             url: "/gpt/question",
