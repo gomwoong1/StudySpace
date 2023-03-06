@@ -23,8 +23,7 @@ let index = {
             contentType: "application/json; charset=utf-8",
             dataType: "text"
         }).done(function(resp) {
-            alert(resp);
-            console.log(resp);
+            $('#answer').val(resp);
         }).fail(function(error) {
             alert(JSON.stringify(error));
         });

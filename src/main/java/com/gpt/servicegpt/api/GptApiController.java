@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
 import com.gpt.servicegpt.service.GptService;
 import com.gpt.servicegpt.service.OpenAiService;
+import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
 import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/gpt")
 @RestController
@@ -29,18 +31,10 @@ public class GptApiController {
     @PostMapping("/question")
     public String sendQuestion(@RequestBody String question) throws JsonProcessingException {
 
-        ResponseEntity val = gptService.createCompletion(api, question);
+        List<CompletionChoice> val = gptService.createCompletion(api, question);
 
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        String jsonString = objectMapper.writeValueAsString(val.getBody());
-        JsonNode jsonNode = objectMapper.readTree(jsonString);
-
-        String answer = jsonNode.get(0).get("text").asText().substring(2);
-
-//        if(answer.contains("answer")) {
-//            answer = answer.substring(answer.charAt(3),)
-//        }
+        CompletionChoice li_val = val.get(0);
+        String answer = li_val.getText();
 
         return answer;
     }
