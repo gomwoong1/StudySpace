@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class GptService {
 
-    public List<CompletionChoice> createCompletion(String api, String question){
+    public String createCompletion(String api, String question){
         OpenAiService openAiService = new OpenAiService(api);
         CompletionRequest completionRequest = CompletionRequest.builder()
                 .prompt(question)
@@ -21,7 +21,11 @@ public class GptService {
                 .temperature(1.0)
                 .build();
 
-        return openAiService.createCompletion(completionRequest).getChoices();
+        List<CompletionChoice> res = openAiService.createCompletion(completionRequest).getChoices();
+        CompletionChoice res_list = res.get(0);
+        String answer = res_list.getText();
+
+        return answer;
     }
 
 }

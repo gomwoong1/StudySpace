@@ -30,11 +30,7 @@ public class GptApiController {
 
     @PostMapping("/question")
     public String sendQuestion(@RequestBody String question) throws JsonProcessingException {
-
-        List<CompletionChoice> val = gptService.createCompletion(api, question);
-
-        CompletionChoice li_val = val.get(0);
-        String answer = li_val.getText();
+        String answer = gptService.createCompletion(api, question);
 
         return answer;
     }
