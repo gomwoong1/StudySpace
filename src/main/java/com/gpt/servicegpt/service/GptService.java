@@ -2,8 +2,6 @@ package com.gpt.servicegpt.service;
 
 import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
-import com.theokanning.openai.completion.CompletionResult;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +21,7 @@ public class GptService {
 
         List<CompletionChoice> res = openAiService.createCompletion(completionRequest).getChoices();
         CompletionChoice res_list = res.get(0);
-        String answer = res_list.getText();
+        String answer = res_list.getText().trim();
 
         return answer;
     }

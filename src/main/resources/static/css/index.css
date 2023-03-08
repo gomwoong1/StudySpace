@@ -126,6 +126,7 @@ body {
     width: 30%;
     height: 5%;
     font-family: var(--body-font);
+    padding: 0pt 10pt 0pt 10pt;
 }
 
 #answer {
@@ -135,6 +136,7 @@ body {
     height: 30%;
     resize: none;
     font-family: var(--body-font);
+    padding: 10px;
 }
 
 #btn_qeustion {
