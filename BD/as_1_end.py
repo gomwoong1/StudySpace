@@ -26,6 +26,7 @@ def get_summary(filename):
     
     if sum > best_score:
       best_score = sum
+  # 코드 작성 영역
 
   return (num_questions, num_students, total_score, best_score)
   
