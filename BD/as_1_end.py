@@ -9,7 +9,6 @@ def get_summary(filename):
   file.close()
   
   lines = [ res.rstrip().lower().split(",") for res in lines ]
-
   lines.reverse()
   answer = lines.pop()
   num_questions = len(answer)
