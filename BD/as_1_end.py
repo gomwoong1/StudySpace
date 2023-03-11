@@ -22,7 +22,6 @@ def get_summary(filename):
         sum +=4
 
     total_score += sum
-    
     if sum > best_score:
       best_score = sum
 
