@@ -7,8 +7,10 @@ def get_summary(filename):
   file = open(filename, "r")
   lines = file.readlines()
   file.close()
-  
+
+  # 코드 작성 영역
   lines = [ res.rstrip().lower().split(",") for res in lines ]
+  
   lines.reverse()
   answer = lines.pop()
   num_questions = len(answer)
