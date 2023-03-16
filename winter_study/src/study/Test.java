@@ -1,13 +1,14 @@
 package study;
 
 public class Test {
-	static void main(String[] args) {
+	public static void main(String args[]) {
 		Car car1 = new Car();
 		Car car2 = null;
 		Fire f1 = new Fire();
 		Fire f2 = null;
 		
-		
+		car1 = f1;
+		f2 = (Fire)car1;
 	}
 }
 
