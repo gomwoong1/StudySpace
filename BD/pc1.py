@@ -96,3 +96,62 @@ for score in A:
 average = total/len(A)
 print(average)
 
+# Q6. 컴프리헨션
+numbers = [1, 2, 3, 4, 5]
+result = [ n*2 for n in numbers if n % 2 == 1]
+
+
+# 연습문제4.pdf
+
+# Q1. 홀수인지 짝수인 판단하는 함수
+def is_odd(number):
+  if number & 2 == 1:
+    return True
+  else:
+    return False
+
+# Q2. 평균값 계산 함수
+def avg_numbers(*args):
+  result = 0
+  for i in args:
+    result += i
+  
+  return result / len(args)
+  
+print(avg_numbers(1,2))
+print(avg_numbers(1,2,3,4,5))
+
+# Q3. 함수 수정
+input1 = int(input("첫번째 숫자를 입력하세요:"))
+input2 = int(input("두번째 숫자를 입력하세요:"))
+
+total = input1 + input2
+print("두 수의 합은 %s 입니다" % total)
+
+# Q4. 3
+
+# Q5. 파일 입출력
+f1 = open("test.txt", 'w')
+f1.write("Life is too short")
+f1.close()
+
+f2 = open("test.txt", 'r')
+print(f2.read())
+
+# Q6. 파일 작성 함수
+user_input = input("저장할 내용을 입력하세요:")
+f = open('test2.txt', 'a')
+f.write(user_input)
+f.write('\n')
+f.close()
+
+# Q7. 파일 입출력해서 값 바꾸기
+f = open('test3.txt', 'r')
+body = f.read()
+f.close()
+
+body = body.replace('java','python')
+
+f = open('test3.txt', 'w')
+f.write(body)
+f.close()
