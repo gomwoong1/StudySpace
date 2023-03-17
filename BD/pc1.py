@@ -66,3 +66,33 @@ print(b)
 # Q1. 코드의 결과값
 # shirt
 
+# Q2. while문 사용해 1~1000 중 3의 배수의 합을 구하기
+
+result = 0
+i = 1
+while i <= 1000:
+  if i % 3 == 0:
+    result += i
+  i += 1
+
+print(result)
+
+# Q3. 별찍기
+i = 0
+while True:
+  i += 1
+  if i > 5: break
+  print("*"*i)
+
+# Q4. 1~100 출력하기
+for i in range(1, 101):
+  print(i)
+
+# Q5. for문 이용해 평균점수 구하기
+A = [70, 60, 55, 75, 95, 90, 80, 80, 85, 100]
+total = 0
+for score in A:
+  total += score
+average = total/len(A)
+print(average)
+
