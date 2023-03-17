@@ -10,3 +10,35 @@ val = 13
 result = "짝수" if val % 2 == 0 else "홀수"
 
 # Q3. 홍길동씨의 주민번호를 나누어 출력해보기
+pin = "881120-1068234"
+yyyymmdd = pin[:6]
+num = pin[-7:]
+print(yyyymmdd)
+print(num)
+
+# Q4. 주민등록번호에서 성별을 나타내는 숫자 출력하기
+pin = "881120-1068234"
+print(pin[7])
+
+# Q5. replace 함수를 사용해 문자열 바꿔서 출력하기
+a = "a:b:c:d"
+b = a.replace(":", "#")
+print(b)
+
+# Q6. 리스트의 원소 순서를 바꿔서 출력하기
+a = [1, 3, 5, 4, 2]
+a.sort()
+a.reverse()
+print(a)
+
+# Q7. 리스트의 원소를 문자열로 만들어 출력하기
+a = ["Life", "is", "too", "short"]
+result = ' '.join(a)
+print(result)
+
+# Q8. 튜플에 값 추가하기
+a = (1, 2, 3)
+a += (4,)
+print(a)
+
+#
