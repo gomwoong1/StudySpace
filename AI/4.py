@@ -12,13 +12,17 @@ df = df[['Length2', 'Weight']]
 fish_data = df.to_numpy()
 fish_data = np.round(fish_data, 2)
 fish_target = [1] * 35 + [0] * 14
+fish_target = np.array(fish_target)
 
-train_data = fish_data[:35]
-train_target = fish_target[:35]
+index = np.arange(49)
+np.random.shuffle(index)
 
-test_data = fish_data[35:]
-test_target = fish_target[35:]
+train_data = fish_data[index[:35]]
+train_target = fish_target[index[:35]]
+
+test_data = fish_data[index[35:]]
+test_target = fish_target[index[35:]]
 
 kn = KNeighborsClassifier()
 kn.fit(train_data, train_target)
-kn.score(test_data, test_target)
+print(kn.score(test_data, test_target))
