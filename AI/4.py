@@ -23,6 +23,12 @@ train_target = fish_target[index[:35]]
 test_data = fish_data[index[35:]]
 test_target = fish_target[index[35:]]
 
+plt.scatter(train_data[:, 0], train_data[:, 1])
+plt.scatter(test_data[:, 0], test_data[:, 1])
+plt.xlabel('length')
+plt.ylabel('weight')
+plt.show()
+
 kn = KNeighborsClassifier()
 kn.fit(train_data, train_target)
 print(kn.score(test_data, test_target))
