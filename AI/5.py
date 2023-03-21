@@ -30,4 +30,20 @@ plt.scatter(train_input[indexes, 0], train_input[indexes, 1], marker='D')
 
 plt.xlabel('length')
 plt.ylabel('weight')
+plt.xlim(0, 1000)
 plt.show()
+
+mean = np.mean(train_input, axis = 0)
+std = np.std(train_input, axis = 0)
+train_scaled = (train_input-mean) / std
+
+new = ([25, 150] - mean) / std
+
+plt.scatter(train_scaled[:,0], train_scaled[:,1])
+plt.scatter(new[0], new[1], marker='*')
+plt.show()
+
+test_scaled = (test_input - mean) / std
+
+kn.fit(train_scaled, train_target)
+print(kn.score(test_scaled, test_target))
