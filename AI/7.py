@@ -23,10 +23,10 @@ knr.n_neighbors = 3
 knr.fit(train_input, train_target)
 print(knr.score(test_input, test_target))
 
-distance, indexes = knr.kneighbors([[50]])
+distance, indexes = knr.kneighbors([[100]])
 
 plt.scatter(train_input, train_target)
 plt.scatter(train_input[indexes], train_target[indexes], marker='D')
 
-plt.scatter(50, 1033, marker='^')
+plt.scatter(100, 1033, marker='^')
 plt.show()
