@@ -21,19 +21,9 @@ a = 0
 b = 0
 
 lr = 0.03
-epochs = 2001
+epochs = 2000
 
-n=len(x_data)
 
-for i in range(epochs):
-    y_pred = a*x_data+b
-    error = y_data - y_pred
-    a_diff = (2/n) * np.sum(-x_data*(error))
-    b_diff = (2/n) * np.sum(-(error))
-    a= a-lr*a_diff
-    b= b-lr*b_diff
-    if i % 100 == 0:
-        print("epoch=%.f, 기울기=%.04f, 절편=%.04f" % (i,a,b))
 
 # mse = mean_squared_error(y_data, y_pred)
 # print(mse)
