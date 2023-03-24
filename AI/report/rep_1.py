@@ -11,20 +11,47 @@ slr = LinearRegression()
 slr.fit(x_data, y_data)
 slr.score(x_data, y_data)
 
-y_pred = slr.predict(x_data)
-
 plt.scatter(x_data, y_data)
-plt.plot(x_data, y_pred)
-plt.show()
+# plt.show()
 
 a = 0
 b = 0
-
 lr = 0.03
 epochs = 2000
 
 
 
+# plt.plot([2,8], [2*slr.coef_+slr.intercept_, 8*slr.coef_+slr.intercept_])
+# plt.show()
+
+n = len(x_data)
+
+for i in range(epochs):
+    y_pred = a * x_data + b
+    error = y_data - y_pred
+    print(y_pred)
+    print(error)
+
+# y_pred = slr.predict(x_data)
+
+
+# plt.plot(x_data, y_pred)
+
+
+# a = 0
+# b = 0
+
+# lr = 0.03
+# epochs = 2000
+
+# for i in range(epochs+1):
+
+# print(y_data)
+# print(y_pred) # 결과값 저장
+
+
 # mse = mean_squared_error(y_data, y_pred)
 # print(mse)
+
+
 # print(slr.coef_, slr.intercept_)
