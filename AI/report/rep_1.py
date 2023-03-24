@@ -4,33 +4,44 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 
 # 수면 시간에 따른 수면만족지수
+# x_data = np.array([[2], [4], [6], [8]])
+# y_data = np.array([45, 66, 73, 100])
+
 x_data = np.array([[2], [4], [6], [8]])
-y_data = np.array([45, 66, 73, 100])
+y_data = np.array([81, 93, 91, 97])
 
 slr = LinearRegression()
 slr.fit(x_data, y_data)
 slr.score(x_data, y_data)
 
-plt.scatter(x_data, y_data)
-# plt.show()
+print(slr.coef_, slr.intercept_)
 
-a = 0
-b = 0
+# a = 8.6
+a = 2.3
+# b = 28.0
+b = 79.0
 lr = 0.03
 epochs = 2000
-
-
-
-# plt.plot([2,8], [2*slr.coef_+slr.intercept_, 8*slr.coef_+slr.intercept_])
-# plt.show()
-
 n = len(x_data)
 
-for i in range(epochs):
+for i in range(epochs + 1):
     y_pred = a * x_data + b
     error = y_data - y_pred
-    print(y_pred)
-    print(error)
+    
+    a_diff = (2/n) * sum(-x_data * (error))
+    b_diff = (2/n) * sum(-(error))
+
+    a = a - lr * a_diff
+    b = b - lr * b_diff
+
+    if i % 100 == 0:
+        print("epoch=%d, 기울기=%0.4f, 절편=%0.4f" % (i, a[0], b[0]))
+
+plt.scatter(x_data, y_data)
+plt.plot([2,8], [2*slr.coef_+slr.intercept_, 8*slr.coef_+slr.intercept_])
+plt.show()
+
+
 
 # y_pred = slr.predict(x_data)
 
