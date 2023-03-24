@@ -17,10 +17,10 @@ slr.score(x_data, y_data)
 print(slr.coef_, slr.intercept_)
 
 # a = 8.6
-a = 2.3
+a = 1.0
 # b = 28.0
-b = 79.0
-lr = 0.03
+b = 1.0
+lr = 0.01
 epochs = 2000
 n = len(x_data)
 
@@ -28,8 +28,12 @@ for i in range(epochs + 1):
     y_pred = a * x_data + b
     error = y_data - y_pred
     
-    a_diff = (2/n) * sum(-x_data * (error))
-    b_diff = (2/n) * sum(-(error))
+    a_diff = 0
+    b_diff = 0
+
+    for j in range(n):
+        a_diff += x_data[j] * (x_data[j] * a + b - y_data[j])
+        b_diff += (x_data[j] * a + b - y_data[j])
 
     a = a - lr * a_diff
     b = b - lr * b_diff
@@ -37,8 +41,11 @@ for i in range(epochs + 1):
     if i % 100 == 0:
         print("epoch=%d, 기울기=%0.4f, 절편=%0.4f" % (i, a[0], b[0]))
 
+y_pred = a * x_data + b
+
 plt.scatter(x_data, y_data)
 plt.plot([2,8], [2*slr.coef_+slr.intercept_, 8*slr.coef_+slr.intercept_])
+plt.plot(x_data, y_pred, color='yellow', linestyle='-.')
 plt.show()
 
 
