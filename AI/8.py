@@ -2,7 +2,8 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import PolynomialFeatures
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
+from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('AI\data\perch_full.csv')
@@ -56,4 +57,45 @@ lr.fit(train_poly, train_target)
 
 print(lr.score(train_poly, train_target))
 print(lr.score(test_poly, test_target))
+
+ss = StandardScaler()
+ss.fit(train_poly)
+
+train_scaled = ss.transform(train_poly)
+test_scaled = ss.transform(test_poly)
+
+ridge = Ridge()
+ridge.fit(train_scaled, train_target)
+
+print(ridge.score(train_scaled, train_target))
+
+print(ridge.score(test_scaled, test_target))
+
+alpha_list = [0.001, 0.01, 0.1, 1, 10, 100]
+train_score= []
+test_score = []
+
+for alpha in alpha_list:
+    ridge = Ridge(alpha=alpha)
+    ridge.fit(train_scaled, train_target)
+    train_score.append(ridge.score(train_scaled, train_target))
+    test_score.append(ridge.score(test_scaled, test_target))
+
+plt.plot(np.log10(alpha_list), train_score)
+plt.plot(np.log10(alpha_list), test_score)
+plt.xlabel('alpha')
+plt.ylabel('R^2')
+plt.show()
+
+ridge = Ridge(alpha = 0.1)
+ridge.fit(train_scaled, train_target)
+
+print(ridge.score(train_scaled, train_target))
+print(ridge.score(test_scaled, test_target))
+
+lasso = Lasso()
+lasso.fit(train_scaled, train_target)
+
+print(lasso.score(train_scaled, train_target))
+print(lasso.score(test_scaled, test_target))
 
