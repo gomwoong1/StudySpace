@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
 
 df = pd.read_csv('AI\data\perch_full.csv')
 perch_full = df.to_numpy()
@@ -35,3 +36,24 @@ print(train_poly.shape)
 print(poly.get_feature_names_out())
 
 test_poly = poly.transform(test_input)
+
+lr = LinearRegression()
+lr.fit(train_poly, train_target)
+
+print(lr.score(train_poly, train_target))
+print(lr.score(test_poly, test_target))
+
+
+poly = PolynomialFeatures(degree= 5, include_bias=False)
+
+poly.fit(train_input)
+train_poly = poly.transform(train_input)
+test_poly = poly.transform(test_input)
+
+print(train_poly.shape)
+
+lr.fit(train_poly, train_target)
+
+print(lr.score(train_poly, train_target))
+print(lr.score(test_poly, test_target))
+
