@@ -99,3 +99,24 @@ lasso.fit(train_scaled, train_target)
 print(lasso.score(train_scaled, train_target))
 print(lasso.score(test_scaled, test_target))
 
+train_score= []
+test_score = []
+
+for alpha in alpha_list:
+    lasso = Lasso(alpha=alpha)
+    lasso.fit(train_scaled, train_target)
+    train_score.append(lasso.score(train_scaled, train_target))
+    test_score.append(lasso.score(test_scaled, test_target))
+
+plt.plot(np.log10(alpha_list), train_score)
+plt.plot(np.log10(alpha_list), test_score)
+plt.xlabel('alpha')
+plt.ylabel('R^2')
+plt.show()
+
+lasso = Lasso(alpha=10)
+lasso.fit(train_scaled, train_target)
+
+print(lasso.score(train_scaled, train_target))
+print(lasso.score(test_scaled, test_target))
+print(np.sum(lasso.coef_ == 0))
