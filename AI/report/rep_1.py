@@ -53,18 +53,21 @@ class SimpleLinearRegression():
 
     def score(self, x, y):
         y_pred = self.predict(x) # 예측값
-        y_mean = np.mean(y) # 타겟 데이터 평균
-        ss_res = np.sum((y - y_pred)**2) # residual sum of squares
-        ss_tot = np.sum((y - y_mean)**2) # total sum of squares
-        r2_score = 1 - (ss_res / ss_tot) # R^2 score
+        y_mean = np.mean(y) # y 데이터 평균값
+        ssr = np.sum((y - y_pred)**2) # y에서 y의 예측값을 뺀 결과의 총합
+        sst = np.sum((y - y_mean)**2) # y에서 y의 평균값을 뺀 결과의 총합
+        r2_score = 1 - (ssr / sst) # R2 Score 공식을 이용해 값 계산
         return r2_score
 
 # x, y 데이터를 넘파이 배열로 선언
 x_data = np.array([[1], [2], [3], [4]])
 y_data = np.array([2, 5, 7, 9])
 
+# 객체 생성, fit() 함수 호출
 slr = SimpleLinearRegression()
 slr.fit(x_data, y_data)
+
+# 기울기, 절편 및 예측값과 점수 출력
 print(slr.coef_, slr.intercept_)
 print(slr.predict([[5]]))
 print(slr.score(x_data, y_data))
@@ -73,5 +76,5 @@ print(slr.score(x_data, y_data))
 plt.scatter(x_data, y_data)
 
 # 선그래프로 기울기와 절편을 시각화
-plt.plot(x_data, slr.coef_ * x_data + slr.intercept_, color='black', linestyle="--")
+plt.plot(x_data, slr.y_pred)
 plt.show()
