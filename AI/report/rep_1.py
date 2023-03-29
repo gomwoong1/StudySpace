@@ -11,11 +11,11 @@ class SimpleLinearRegression():
 
     def fit(self, x_data, y_data):
         # 경사하강법을 위한 초기값 설정
-        # 기울기와 절편은 각각 1.0, 학습율은 0.01, 반복회수는 2000번으로 지정
+        # 기울기와 절편은 각각 1.0, 학습율은 0.01, 반복회수는 2000번으로 설정
         # 데이터의 개수를 n에 저장
-        a = 1.0
-        b = 1.0
-        lr = 0.05
+        a = 0.0
+        b = 0.0
+        lr = 0.03
         epochs = 2000
         n = len(x_data)
 
@@ -23,6 +23,7 @@ class SimpleLinearRegression():
         for i in range(epochs + 1):
             y_pred = a * x_data + b
             
+            # 기울기, 절편의 누적 차이값 저장 변수
             a_diff = 0
             b_diff = 0
 
@@ -43,7 +44,7 @@ class SimpleLinearRegression():
 
         # 경사하강법 종료 후 기울기, 절편, 예측값을 각 인스턴스 변수에 저장
         self.coef_ = a
-        self.intercept_ = float(b)
+        self.intercept_ = float(np.round(b,4))
         self.y_pred = a * x_data + b
 
     def predict(self, X):
