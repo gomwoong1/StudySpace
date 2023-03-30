@@ -19,11 +19,9 @@ class SimpleLogisticRegression():
         n = len(x_data)
 
         for i in range(epochs + 1):
-
-            for x, y in zip(x_data, y_data):
-                a_diff = x * (self.sigmoid(a * x + b) - y)
-                b_diff = self.sigmoid(a * x + b) - y
-
+            for x_data, y_data in data:
+                a_diff = x_data * (self.sigmoid(a * x_data + b) - y_data)
+                b_diff = self.sigmoid(a * x_data + b) - y_data
                 
                 a = a - lr * a_diff
                 b = b - lr * b_diff
@@ -36,12 +34,13 @@ class SimpleLogisticRegression():
 
                 
 
-x_data = np.array([[2], [4], [6], [8], [10], [12], [14]])
-y_data = np.array([0, 0, 0, 1, 1, 1, 1])
+# x_data = np.array([[2], [4], [6], [8], [10], [12], [14]])
+# y_data = np.array([0, 0, 0, 1, 1, 1, 1])
+data = [[2, 0], [4, 0], [6, 0], [8, 1], [10, 1], [12, 1], [14, 1]]
 
 slr = SimpleLogisticRegression()
-slr.fit(x_data, y_data)
+slr.fit([i[0] for i in data], [i[1] for i in data])
 
-plt.scatter(x_data, y_data)
-plt.plot(x_data, slr.y_pred)
-plt.show()
+plt.scatter([i[0] for i in data], [i[1] for i in data])
+# plt.plot(x_data, slr.y_pred)
+# plt.show()
