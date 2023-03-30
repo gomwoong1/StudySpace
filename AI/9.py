@@ -23,5 +23,11 @@ test_scaled = ss.transform(test_input)
 kn = KNeighborsClassifier(n_neighbors=3)
 kn.fit(train_scaled, train_target)
 
+print(kn.classes_)
+print(kn.predict(test_scaled[:5]))
+
 print(kn.score(train_scaled, train_target))
 print(kn.score(test_scaled, test_target))
+
+proba = kn.predict_proba(test_scaled[:5])
+print(np.round(proba, decimals=4))
