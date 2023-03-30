@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
-
+from sklearn.linear_model import LogisticRegression
 
 fish = pd.read_csv("AI\data\Fish.csv")
 # print(fish.head())
@@ -31,3 +31,14 @@ print(kn.score(test_scaled, test_target))
 
 proba = kn.predict_proba(test_scaled[:5])
 print(np.round(proba, decimals=4))
+
+# bream_smelt_indexes = (train_target == 'Bream') | (train_target == 'Smelt')
+# train_bream_smelt = train_scaled[bream_smelt_indexes]
+# target_bream_smelt = train_target[bream_smelt_indexes]
+
+# lr = LogisticRegression()
+# lr.fit(train_bream_smelt, target_bream_smelt)
+
+# print(lr.predict(train_bream_smelt[:5]))
+# print(lr.predict_proba(train_bream_smelt[:5]))
+
