@@ -34,6 +34,16 @@ class SimpleLogisticRegression:
         self.set_a(a)
         self.set_b(b)
 
+    def predict(self, x_data):
+        # 샘플 데이터를 시그모이드 함수로 연산 후 판별
+        # 0.5보다 높으면 1(합격), 낮으면 0(불합격)
+        prob = self.sigmoid(self.a*x_data + self.b)
+        return np.where(prob>= 0.5, "합격", "불합격")
+
+    def score(self):
+        pass
+
+
 #공부시간 X와 성적 Y의 리스트를 만듭니다.
 x_data = np.array([[2], [4], [6], [8], [10], [12], [14]])
 y_data = np.array([0, 0, 0, 1, 1, 1, 1])
@@ -47,3 +57,5 @@ slr.fit(x_data, y_data)
 x_range = (np.arange(0, 15, 0.1)) #그래프로 나타낼 x값의 범위를 정합니다.
 plt.plot(x_range, np.array([slr.sigmoid(slr.a*x + slr.b) for x in x_range]))
 plt.show()
+
+print(slr.predict([[6.8], [8]]))
