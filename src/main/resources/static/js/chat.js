@@ -1,6 +1,10 @@
 // 채팅 로그를 담는 배열 생성
 let chatLog = [];
 
+// 임시로 객체 만들고 addSysChatLog 사용하는 방법.
+// let myIndex = Object.create(index);
+// myIndex.addSysChatLog("Hello, world!");
+
 let index = {
     init: function () {
         // 전송 버튼을 누르면 이벤트 발생
@@ -60,7 +64,7 @@ let index = {
 
         // 스크롤 아래로 내려주기
         $('.chat_content').scrollTop($('.chat_content').prop('scrollHeight'));
-    },
+    }
 }
 
 index.init();
