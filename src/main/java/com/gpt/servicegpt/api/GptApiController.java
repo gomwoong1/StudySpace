@@ -15,17 +15,16 @@ public class GptApiController {
     @Autowired
     GptService gptService;
 
-    private final String api = "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";
-
     @PostMapping("/question")
     public String sendQuestion(@RequestBody String question) throws JsonProcessingException {
-        String answer = gptService.createCompletion(api, question);
+        String answer = gptService.createCompletion(question);
 
         return answer;
     }
 
     @PostMapping("/chat/question")
     public void sendChatQeustion(@RequestBody String question) throws JsonProcessingException {
-
+        gptService.createChatCompletion();
+//        gptService.createChatCompletion(question);
     }
 }

@@ -1,0 +1,39 @@
+.chat-window {
+    width: 400px;
+    height: 500px;
+    border: 1px solid black;
+}
+
+.chat-messages {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.message {
+    background-color: #f1f0f0;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.chat-input {
+    margin-top: 20px;
+}
+
+.chat-input form {
+    display: flex;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+}
+
+.chat-input button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

@@ -29,6 +29,7 @@ import com.theokanning.openai.moderation.ModerationRequest;
 import com.theokanning.openai.moderation.ModerationResult;
 import io.reactivex.Single;
 import okhttp3.*;
+import org.springframework.context.annotation.Bean;
 import retrofit2.HttpException;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
