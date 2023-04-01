@@ -4,6 +4,8 @@ import com.theokanning.openai.DeleteResult;
 import com.theokanning.openai.OpenAiResponse;
 import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.completion.CompletionResult;
+import com.theokanning.openai.completion.chat.ChatCompletionRequest;
+import com.theokanning.openai.completion.chat.ChatCompletionResult;
 import com.theokanning.openai.edit.EditRequest;
 import com.theokanning.openai.edit.EditResult;
 import com.theokanning.openai.embedding.EmbeddingRequest;
@@ -24,6 +26,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.http.*;
 
+// GPT3 api로 RESTful하게 요청을 보내는 인터페이스
 public interface OpenAiApi {
 
     @GET("v1/models")
@@ -32,9 +35,11 @@ public interface OpenAiApi {
     @GET("/v1/models/{model_id}")
     Single<Model> getModel(@Path("model_id") String modelId);
 
-
     @POST("/v1/completions")
     Single<CompletionResult> createCompletion(@Body CompletionRequest request);
+
+    @POST("/v1/chat/completions")
+    Single<ChatCompletionResult> createChatCompletion(@Body ChatCompletionRequest request);
 
     @Deprecated
     @POST("/v1/engines/{engine_id}/completions")

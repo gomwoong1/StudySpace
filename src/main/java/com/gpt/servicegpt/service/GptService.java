@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class GptService {
 
-    public String createCompletion(String api, String question){
+    public String createCompletion(String api, String question) {
         OpenAiService openAiService = new OpenAiService(api);
         CompletionRequest completionRequest = CompletionRequest.builder()
                 .prompt(question)
@@ -26,4 +26,7 @@ public class GptService {
         return answer;
     }
 
+    public String createChatCompletion(String api, String question) {
+
+    }
 }

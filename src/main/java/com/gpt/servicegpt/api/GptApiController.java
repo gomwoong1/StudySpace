@@ -23,4 +23,9 @@ public class GptApiController {
 
         return answer;
     }
+
+    @PostMapping("/chat/question")
+    public void sendChatQeustion(@RequestBody String question) throws JsonProcessingException {
+
+    }
 }

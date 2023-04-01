@@ -18,7 +18,8 @@ let index = {
 
         $.ajax( {
             type: "POST",
-            url: "/gpt/question",
+            // url: "/gpt/question",
+            url: "/gpt/chat/question",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "text"

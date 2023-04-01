@@ -10,6 +10,8 @@ import com.theokanning.openai.OpenAiError;
 import com.theokanning.openai.OpenAiHttpException;
 import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.completion.CompletionResult;
+import com.theokanning.openai.completion.chat.ChatCompletionRequest;
+import com.theokanning.openai.completion.chat.ChatCompletionResult;
 import com.theokanning.openai.edit.EditRequest;
 import com.theokanning.openai.edit.EditResult;
 import com.theokanning.openai.embedding.EmbeddingRequest;
@@ -35,6 +37,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class OpenAiService {
@@ -101,6 +104,10 @@ public class OpenAiService {
                 throw e;
             }
         }
+    }
+
+    public ChatCompletionResult createChatCompletion(ChatCompletionRequest request) {
+        return execute(api.createChatCompletion(request));
     }
 
     public List<Model> listModels() {
@@ -234,6 +241,7 @@ public class OpenAiService {
 
 
     public static OpenAiApi buildApi(String token, Duration timeout) {
+        Objects.requireNonNull(token, "OpenAI token required");
         ObjectMapper mapper = defaultObjectMapper();
         OkHttpClient client = defaultClient(token, timeout);
         Retrofit retrofit = defaultRetrofit(client, mapper);
