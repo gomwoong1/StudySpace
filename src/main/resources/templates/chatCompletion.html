@@ -4,8 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <link href="css/index.css" rel="stylesheet" type="text/css">
     <link href="css/chat.css" rel="stylesheet" type="text/css">
+    <link href="css/index.css" rel="stylesheet" type="text/css">
     <script src="//code.jquery.com/jquery-3.5.1.js"></script>
     <title>Chatting</title>
   </head>
@@ -37,20 +37,20 @@
       </div>
     </div>
 
-    <div class="chat-window">
-      <div class="chat-messages">
-        <ul>
-          <li class="message">Hello!</li>
-          <li class="message">How are you?</li>
-        </ul>
+    <div class ="chat-content">
+      <div class="line">
+        <span class="chat-box">안녕?</span>
       </div>
-      <div class="chat-input">
-        <form>
-          <input type="text" placeholder="Type your message...">
-          <button type="submit">Send</button>
-        </form>
+      <div class="line">
+        <span class=" mine">안녕!</span>
       </div>
     </div>
 
+    <div class="input_area">
+      <input id="input" type="text" placeholder="채팅을 입력하세요">
+      <button id="send">전송</button>
+    </div>
+
+  <script src="js/chat.js"></script>
   </body>
 </html>
