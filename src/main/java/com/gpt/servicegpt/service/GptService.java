@@ -32,8 +32,7 @@ public class GptService {
         return answer;
     }
 
-//    public String createChatCompletion(String question) {
-    public String createChatCompletion() {
+    public String createChatCompletion(List<ChatMessage> log) {
         List<ChatMessage> chat_list = new ArrayList<>();
         ChatMessage chatMessage = new ChatMessage();
 
