@@ -1,31 +1,66 @@
-// document.querySelector('#send').addEventListener('click', function () {
-//     let template = `<div class="line">
-//           <span class=" mine"> ${document.querySelector('#input').value}</span>
-//         </div>`
-//
-//     // document.getElementById('input').innerText = ''
-//     document.querySelector('.chat-content').insertAdjacentHTML('beforeend', template)
-// })
+// 채팅 로그를 담는 배열 생성
+let chatLog = [];
 
-// HTML 요소 찾기
-const chatMessages = document.querySelector(".chat-messages");
-const chatForm = document.querySelector(".chat-input form");
-const chatInput = document.querySelector(".chat-input input[type='text']");
+let index = {
+    init: function () {
+        // 전송 버튼을 누르면 이벤트 발생
+        $("#send").on("click", ()=> {
+            this.addChatLog();
+        });
+        
+        // 채팅 입력창에서 엔터를 누르면 이벤트 발생
+        $("#input").on("keydown", (event) => {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                this.addChatLog();
+            }
+        });
+    },
 
-// 채팅 메시지 추가 함수
-function addChatMessage(message) {
-    const messageEl = document.createElement("li");
-    messageEl.classList.add("message");
-    messageEl.textContent = message;
-    chatMessages.appendChild(messageEl);
+    addChatLog: function() {
+        let text = $("#input").val();
+
+        // 채팅 입력창이 빈칸이 아니라면 이벤트 실행
+        if (text !== '') {
+            // 채팅 입력창 공백으로 만들기
+            $('#input').val('');
+
+            // 말풍선 추가하기
+            $('.chat_content').append(`
+                <div class="line">
+                    <span class="chat-box mine">${text}</span>
+                </div>
+            `);
+
+            // 채팅 로그에 role, content 담기
+            chatLog.push({
+                role: "user",
+                content: text,
+            });
+
+            // 스크롤 아래로 내려주기
+            $('.chat_content').scrollTop($('.chat_content').prop('scrollHeight'));
+        }
+    },
+
+    // 답변이 돌아오면 Model의 답을 추가해주는 이벤트
+    addSysChatLog: function(answer) {
+        // 말풍선 추가하기
+        $('.chat_content').append(`
+                <div class="line">
+                    <span class="chat-box">${answer}</span>
+                </div>
+        `);
+
+        // 채팅 로그에 role, content 담기
+        chatLog.push({
+            role: "system",
+            content: answer,
+        });
+
+        // 스크롤 아래로 내려주기
+        $('.chat_content').scrollTop($('.chat_content').prop('scrollHeight'));
+    },
 }
 
-// submit 이벤트 핸들러
-chatForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const message = chatInput.value;
-    if (message.trim() !== "") {
-        addChatMessage(message);
-        chatInput.value = "";
-    }
-});
+index.init();
