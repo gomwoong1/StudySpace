@@ -63,18 +63,15 @@ let index = {
 
     // 답변이 돌아오면 Model의 답을 추가해주는 이벤트
     addSysChatLog: function(answer) {
+        // 채팅 로그에 role, content 담기
+        chatLog.push(answer);
+
         // 말풍선 추가하기
         $('.chat_content').append(`
                 <div class="line">
-                    <span class="chat-box">${answer}</span>
+                    <span class="chat-box">${answer.content}</span>
                 </div>
         `);
-
-        // 채팅 로그에 role, content 담기
-        chatLog.push({
-            role: "system",
-            content: answer,
-        });
 
         // 스크롤 아래로 내려주기
         $('.chat_content').scrollTop($('.chat_content').prop('scrollHeight'));

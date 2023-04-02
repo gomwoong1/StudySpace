@@ -28,9 +28,9 @@ public class GptApiController {
     }
 
     @PostMapping("/chat/question")
-    public ResponseDto<String> sendChatQeustion(@RequestBody List<ChatMessage> log) throws JsonProcessingException {
-        String answer = gptService.createChatCompletion(log);
+    public ResponseDto<ChatMessage> sendChatQeustion(@RequestBody List<ChatMessage> log) throws JsonProcessingException {
+        ChatMessage answer = gptService.createChatCompletion(log);
 
-        return new ResponseDto<String>(HttpStatus.OK.value(), answer);
+        return new ResponseDto<ChatMessage>(HttpStatus.OK.value(), answer);
     }
 }
