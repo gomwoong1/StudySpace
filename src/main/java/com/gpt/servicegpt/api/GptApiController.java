@@ -1,9 +1,11 @@
 package com.gpt.servicegpt.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.gpt.servicegpt.dto.ResponseDto;
 import com.gpt.servicegpt.service.GptService;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,9 @@ public class GptApiController {
     }
 
     @PostMapping("/chat/question")
-    public void sendChatQeustion(@RequestBody List<ChatMessage> log) throws JsonProcessingException {
-        gptService.createChatCompletion(log);
+    public ResponseDto<String> sendChatQeustion(@RequestBody List<ChatMessage> log) throws JsonProcessingException {
+        String answer = gptService.createChatCompletion(log);
+
+        return new ResponseDto<String>(HttpStatus.OK.value(), answer);
     }
 }

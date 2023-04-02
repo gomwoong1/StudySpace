@@ -6,12 +6,12 @@ import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class GptService {
 
+    String json;
     private final String api = "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";
 
     OpenAiService openAiService = new OpenAiService(api);
@@ -33,15 +33,12 @@ public class GptService {
     }
 
     public String createChatCompletion(List<ChatMessage> log) {
-        List<ChatMessage> chat_list = new ArrayList<>();
-        ChatMessage chatMessage = new ChatMessage();
 
-//        chat_list.add();
-//
-//        ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest.builder()
-//                .model("gpt-3.5-turbo")
-//                .messages()
-//                .build();
+        // ChatCompletionRequest 객체를 Builder로 생성
+        ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest.builder()
+                .model("gpt-3.5-turbo")
+                .messages(log)
+                .build();
 
         return "test";
     }

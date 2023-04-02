@@ -44,6 +44,20 @@ let index = {
 
             // 스크롤 아래로 내려주기
             $('.chat_content').scrollTop($('.chat_content').prop('scrollHeight'));
+
+            $.ajax({
+                type: "POST",
+                url: "/gpt/chat/question",
+                data: JSON.stringify(chatLog),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            }).done(function(resp) {
+                let temp = Object.create(index);
+                temp.addSysChatLog(resp.data)
+            }).fail(function(error) {
+                console.log("송수신에러");
+                console.log(JSON.stringify(error));
+            });
         }
     },
 
