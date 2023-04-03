@@ -13,13 +13,21 @@
             <div class="logo">
                 <a href="/"><img src="images/logo.png"><label>eduG</label></a>
             </div>
-            <div class="header-menu">
-                <a sec:authorize="isAnonymous()" href="/auth/login">로그인</a>
-                <a sec:authorize="isAnonymous()" href="/auth/signup">회원가입</a>
-                <a sec:authorize="isAuthenticated()" href="/logout">로그아웃</a>
-                <a sec:authorize="isAuthenticated()" href="/">Q&A</a>
-                <a sec:authorize="isAuthenticated()" href="/chat">Chat</a>
+
+            <!-- 사용자가 로그인하지 않았을 때 -->
+            <div th:if="${#authorization.expression('isAnonymous()')}" class="header-menu-index">
+                <a href="/auth/login">로그인</a>
+                <a href="/auth/signup">회원가입</a>
             </div>
+
+            <!-- 사용자가 로그인했을 때 -->
+            <div th:if="${#authorization.expression('isAuthenticated()')}" class="header-menu">
+                <a href="/logout">로그아웃</a>
+                <a href="/">Q&A</a>
+                <a href="/chat">Chat</a>
+                <a href="/image">Image</a>
+            </div>
+
             <div class="user-settings">
                 <div class="dark-light">
                     <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">

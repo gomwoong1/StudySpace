@@ -15,4 +15,9 @@ public class BoardController {
     public String Chatting(){
         return "chatCompletion.html";
     }
+
+    @GetMapping("/image")
+    public String ImagePage(){
+        return "image.html";
+    }
 }

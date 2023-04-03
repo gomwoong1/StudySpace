@@ -30,9 +30,8 @@
     font-size: 16px;
     justify-content: space-between;
 }
-
 .header-menu{
-    grid-template-columns: repeat(3, 0fr);
+    grid-template-columns: repeat(4, 0fr);
     display: grid;
     grid-column-gap: 12px;
     text-align: center;
@@ -45,6 +44,23 @@
 }
 
 .header-menu a:hover{
+    color:var(--active-color);
+}
+
+.header-menu-index{
+    grid-template-columns: repeat(2, 0fr);
+    display: grid;
+    grid-column-gap: 12px;
+    text-align: center;
+}
+
+.header-menu-index a{
+    text-decoration: none;
+    color: var(--body-color);
+    font-weight: 500;
+}
+
+.header-menu-index a:hover{
     color:var(--active-color);
 }
 

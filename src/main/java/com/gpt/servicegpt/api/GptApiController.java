@@ -33,4 +33,9 @@ public class GptApiController {
 
         return new ResponseDto<ChatMessage>(HttpStatus.OK.value(), answer);
     }
+
+    @PostMapping("/image/create")
+    public void sendImgCreate(@RequestBody String requirement) {
+        gptService.createImage(requirement);
+    }
 }
