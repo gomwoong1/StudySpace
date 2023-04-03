@@ -6,6 +6,7 @@ import com.theokanning.openai.completion.chat.ChatCompletionChoice;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.image.CreateImageRequest;
+import com.theokanning.openai.image.ImageResult;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,8 +59,13 @@ public class GptService {
     }
 
     public void createImage(String requirement){
-//        CreateImageRequest ImgReq = new CreateImageRequest().builder()
-//                .prompt(requirement)
-//                .
+        CreateImageRequest ImgReq = new CreateImageRequest().builder()
+                .prompt(requirement) // 생성할 이미지에 대한 설명
+                .n(1) // 생성할 이미지의 개수로, 기본은 1
+                .size("1024*1024")   // 생성할 이미지의 크기를 지정, 기본은 1024*1024
+                .responseFormat("b64_json") // 이미지 반환 방식을 지정, 기본은 url.
+                .build();
+
+        ImageResult res = openAiService.createImage(ImgReq);
     }
 }
