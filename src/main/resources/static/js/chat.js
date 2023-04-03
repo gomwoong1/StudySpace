@@ -1,10 +1,6 @@
 // 채팅 로그를 담는 배열 생성
 let chatLog = [];
 
-// 임시로 객체 만들고 addSysChatLog 사용하는 방법.
-// let myIndex = Object.create(index);
-// myIndex.addSysChatLog("Hello, world!");
-
 let index = {
     init: function () {
         // 전송 버튼을 누르면 이벤트 발생
@@ -28,6 +24,11 @@ let index = {
         if (text !== '') {
             // 채팅 입력창 공백으로 만들기
             $('#input').val('');
+
+            // 서버로부터 응답이 오기 전까지 채팅 입력창 비활성화 및 안내메시지 출력
+            $("#input").prop("disabled", true);
+            $("#send").prop("disabled", true);
+            $("#input").prop("placeholder", "답변하는 중입니다.");
 
             // 말풍선 추가하기
             $('.chat_content').append(`
@@ -54,6 +55,9 @@ let index = {
             }).done(function(resp) {
                 let temp = Object.create(index);
                 temp.addSysChatLog(resp.data)
+                $("#input").prop("disabled", false);
+                $("#send").prop("disabled", false);
+                $("#input").prop("placeholder", "채팅을 입력하세요");
             }).fail(function(error) {
                 console.log("송수신에러");
                 console.log(JSON.stringify(error));
