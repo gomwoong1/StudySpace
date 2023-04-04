@@ -35,7 +35,10 @@ public class GptApiController {
     }
 
     @PostMapping("/image/create")
-    public void sendImgCreate(@RequestBody String requirement) {
-        gptService.createImage(requirement);
+    public ResponseDto<String> sendImgCreate(@RequestBody String requirement) {
+        String img = gptService.createImage(requirement);
+        System.out.println("Service 요청됨!");
+
+        return new ResponseDto<String>(HttpStatus.OK.value(), img);
     }
 }
