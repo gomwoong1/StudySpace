@@ -14,7 +14,10 @@ let index = {
 
     sendRequirement: function() {
         let req = $("#input").val();
-        $("#input").val('');
+        $("#input").val('답변 중입니다.');
+
+        $("#input").prop("disabled", true);
+        $("#send").prop("disabled", true);
 
         $.ajax({
             type: "POST",
@@ -24,7 +27,10 @@ let index = {
             dataType: "json"
         }).done(function(resp) {
             $('#show-img').attr('src', `data:image/png;base64,${resp.data}`);
-            console.log(resp.data);
+
+            $("#input").val('');
+            $("#input").prop("disabled", false);
+            $("#send").prop("disabled", false);
         }).fail(function(error) {
             console.log(JSON.stringify(error));
         });

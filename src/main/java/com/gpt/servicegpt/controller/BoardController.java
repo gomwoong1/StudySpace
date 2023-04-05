@@ -17,7 +17,12 @@ public class BoardController {
     }
 
     @GetMapping("/image")
-    public String ImagePage(){
+    public String imagePage(){
         return "image.html";
+    }
+
+    @GetMapping("/edit")
+    public String imageEdit(){
+        return "imageEdit.html";
     }
 }

@@ -20,6 +20,7 @@ public class GptApiController {
     @Autowired
     GptService gptService;
 
+    // Completion Service Req Controller
     @PostMapping("/question")
     public String sendQuestion(@RequestBody String question) throws JsonProcessingException {
         String answer = gptService.createCompletion(question);
@@ -27,6 +28,7 @@ public class GptApiController {
         return answer;
     }
 
+    // Chat Completion Service Req Controller
     @PostMapping("/chat/question")
     public ResponseDto<ChatMessage> sendChatQeustion(@RequestBody List<ChatMessage> log) throws JsonProcessingException {
         ChatMessage answer = gptService.createChatCompletion(log);
@@ -34,11 +36,18 @@ public class GptApiController {
         return new ResponseDto<ChatMessage>(HttpStatus.OK.value(), answer);
     }
 
+    // ImageCreate Service Req Controller
     @PostMapping("/image/create")
     public ResponseDto<String> sendImgCreate(@RequestBody String requirement) {
         String img = gptService.createImage(requirement);
         System.out.println("Service 요청됨!");
 
         return new ResponseDto<String>(HttpStatus.OK.value(), img);
+    }
+
+    // ImageEdit Service Req Controller
+    @PostMapping("/image/edit")
+    public void sendImgEdit(){
+
     }
 }

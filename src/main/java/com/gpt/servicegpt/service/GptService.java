@@ -5,10 +5,17 @@ import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.completion.chat.ChatCompletionChoice;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatMessage;
+import com.theokanning.openai.image.CreateImageEditRequest;
 import com.theokanning.openai.image.CreateImageRequest;
 import com.theokanning.openai.image.Image;
 import com.theokanning.openai.image.ImageResult;
+import io.reactivex.Single;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import org.springframework.stereotype.Service;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
 
 import java.util.List;
 
@@ -73,4 +80,41 @@ public class GptService {
 
         return b64;
     }
+
+//   ImageEdit의 openAiService 메서드
+//    @POST("/v1/images/edits")
+//    Single<ImageResult> createImageEdit(@Body RequestBody requestBody);
+
+//    오버로딩, 자료형을 받아서 파싱 및 진짜 메서드 호출
+//    public ImageResult createImageEdit(CreateImageEditRequest request, String imagePath, String maskPath) {
+//        java.io.File image = new java.io.File(imagePath);
+//        java.io.File mask = null;
+//        if (maskPath != null) {
+//            mask = new java.io.File(maskPath);
+//        }
+//        return createImageEdit(request, image, mask);
+//    }
+//
+//    public ImageResult createImageEdit(CreateImageEditRequest request, java.io.File image, java.io.File mask) {
+//        RequestBody imageBody = RequestBody.create(MediaType.parse("image"), image);
+//
+//        MultipartBody.Builder builder = new MultipartBody.Builder()
+//                .setType(MediaType.get("multipart/form-data"))
+//                .addFormDataPart("prompt", request.getPrompt())
+//                .addFormDataPart("size", request.getSize())
+//                .addFormDataPart("response_format", request.getResponseFormat())
+//                .addFormDataPart("image", "image", imageBody);
+//
+//        if (request.getN() != null) {
+//            builder.addFormDataPart("n", request.getN().toString());
+//        }
+//
+//        if (mask != null) {
+//            RequestBody maskBody = RequestBody.create(MediaType.parse("image"), mask);
+//            builder.addFormDataPart("mask", "mask", maskBody);
+//        }
+//
+//        return execute(api.createImageEdit(builder.build()));
+//    }
+
 }
