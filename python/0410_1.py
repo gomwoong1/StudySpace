@@ -108,37 +108,36 @@ print("리스트 a를 오름차순으로 정렬:", a)
 b = ['three', 'two', 'one']
 b.sort()
 print("리스트 b를 오름차순으로 정렬:", b)
-# c = ['홍길동', '강감찬', '이순신']
-# c.sort()
-# print("리스트 c를 오름차순으로 정렬:", c)
+c = ['홍길동', '강감찬', '이순신']
+c.sort()
+print("리스트 c를 오름차순으로 정렬:", c)
 
-# a = [56, 13, 7, 25, 88]
-# a.reverse()
-# print("리스트 a를 뒤집은 결과:", a)
-
-# tp = (101, 102, 'one', 'two')
-# print("튜플 tp의 첫번째 요소:", tp[0])
-# print("튜플 tp의 세번째 요소:", tp[2])
-
-# tp = (101, 102, 'one', 'two')
-# print("튜플 tp의 3번째부터 마지막요소까지 출력:", tp[2:])
-# print("튜플 tp의 2번째 요소 출력:", tp[1:2])
-
-# tp = (101, 102)
-# tp2 = ('one', 'two')
-# print("튜블끼리 더하기 연산 결과:", tp + tp2)
-
-# tp = ('space', 'zone')
-# print("튜플에 곱하기 2 연산한 결과:", tp * 2)
-# tp = ('Good',)
-# print("튜플에 곱하기 5 연산한 결과:", tp * 5)
-
-
+a = [56, 13, 7, 25, 88]
+a.reverse()
+print("리스트 a를 뒤집은 결과:", a)
 
 
 # ---------------------------
 # 집합형 데이터 타입 예제 소스
 # ---------------------------
+
+tp = (101, 102, 'one', 'two')
+print("튜플 tp의 첫번째 요소:", tp[0])
+print("튜플 tp의 세번째 요소:", tp[2])
+
+tp = (101, 102, 'one', 'two')
+print("튜플 tp의 3번째부터 마지막요소까지 출력:", tp[2:])
+print("튜플 tp의 2번째 요소 출력:", tp[1:2])
+
+tp = (101, 102)
+tp2 = ('one', 'two')
+print("튜블끼리 더하기 연산 결과:", tp + tp2)
+
+tp = ('space', 'zone')
+print("튜플에 곱하기 2 연산한 결과:", tp * 2)
+tp = ('Good',)
+print("튜플에 곱하기 5 연산한 결과:", tp * 5)
+
 
 a = {101:'smart'}
 a[201] = 'graphic'
@@ -189,39 +188,33 @@ a.clear()
 print("clear 함수 호출 후 딕셔너리 a 출력:", a)
 
 
+s1 = set([1, 'two', 3])
+print("집합 s1 출력:", s1)
+s2 = set(['one', 2, 'three'])
+print("집합 s2 출력:", s2)
 
+s3 = set('speed')
+print("집합 s3 출력:", s3)
 
+s1 = set([1, 'two', 3])
+s2 = set(['one', 'two', 'three', 4, 5])
+print("집합 s1과 s2의 교집합 결과:", s1&s2)
 
+print("집합 s1과 s2의 합집합 결과:", s1|s2)
 
+print("집합 s1에서 s2의 차집합 결과:", s1-s2)
+print("집합 s2에서 s1의 차집합 결과:", s2-s1)
+print("집합 s1에서 s2의 차집합 결과:", s1.difference(s2))
+print("집합 s2에서 s1의 차집합 결과:", s2.difference(s1))
 
+sd = set([101, 102, 103])
+sd.add(105)
+print("집합 sd에 원소를 추가하고 출력:", sd)
 
-# s1 = set([1, 'two', 3])
-# print("집합 s1 출력:", s1)
-# s2 = set(['one', 2, 'three'])
-# print("집합 s2 출력:", s2)
+sd = set([201, 203, 205])
+sd.update([202, 204])
+print("집합 sd에 여러 원소를 추가하고 출력:", sd)
 
-# s3 = set('speed')
-# print("집합 s3 출력:", s3)
-
-# s1 = set([1, 'two', 3])
-# s2 = set(['one', 'two', 'three', 4, 5])
-# print("집합 s1과 s2의 교집합 결과:", s1&s2)
-
-# print("집합 s1과 s2의 합집합 결과:", s1|s2)
-
-# print("집합 s1에서 s2의 차집합 결과:", s1-s2)
-# print("집합 s2에서 s1의 차집합 결과:", s2-s1)
-# print("집합 s1에서 s2의 차집합 결과:", s1.difference(s2))
-# print("집합 s2에서 s1의 차집합 결과:", s2.difference(s1))
-
-# sd = set([101, 102, 103])
-# sd.add(105)
-# print("집합 sd에 원소를 추가하고 출력:", sd)
-
-# sd = set([201, 203, 205])
-# sd.update([202, 204])
-# print("집합 sd에 여러 원소를 추가하고 출력:", sd)
-
-# sd = set([501, 502, 503])
-# sd.remove(502)
-# print("집합 sd에서 502 요소를 삭제하고 출력:", sd)
+sd = set([501, 502, 503])
+sd.remove(502)
+print("집합 sd에서 502 요소를 삭제하고 출력:", sd)

@@ -22,10 +22,10 @@ b = {101:'coding', 'id':'python'}
 del b['id']
 print("딕셔너리 b에서 키 'id'를 가진 쌍을 삭제한 후 출력", b)
 
-c = {'id':'cskisa', 'pw':123456, 'email':'pkh@naver.com'}
+c = {'id':'jwkim', 'pw':945018, 'email':'gomwoong0619@naver.com'}
 print("딕셔너리 c의 키와 값을 쌍으로 출력:", c.items())
 
-s3 = set('speed')
+s3 = set('running')
 print("s3의 결과값 출력:", s3)
 
 sd = set([101, 102, 103])
