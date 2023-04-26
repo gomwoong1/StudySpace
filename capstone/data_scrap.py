@@ -1,7 +1,3 @@
-# 정적 웹 크롤링으론 불가능
-# import requests
-# from bs4 import BeautifulSoup
-
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
 
@@ -13,34 +9,60 @@ options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
 driver = webdriver.Chrome(options=options)
 
-# 페이지 로딩을 위한 5초 대기
-driver.implicitly_wait(5)
-
 # URL에 접근
 driver.get('https://www.univ100.kr/qna/344')
 
+# 페이지 로딩을 위한 5초 대기
+time.sleep(3)
+
 # 초기 스크롤 위치 설정
-scroll_location = driver.execute_script("return document.body.scrollHeight")
+before_location = driver.execute_script("return window.pageYOffset")
 
-while True:
-	#현재 스크롤의 가장 아래로 내림
-    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-    
+# items = driver.find_elements(By.CLASS_NAME, "qna")
+item = driver.find_element(By.CSS_SELECTOR, '[data-index="0"]')
+
+# while True:
+for i in range(0, 1):
+	#현재 위치 + 500으로 스크롤 이동
+    driver.execute_script("window.scrollTo(0,{})".format(before_location + 800))
+        
     #전체 스크롤이 늘어날 때까지 대기
-    time.sleep(0.2)
-    # driver.implicitly_wait(1)
+    time.sleep(2)
     
-    #늘어난 스크롤 높이
-    scroll_height = driver.execute_script("return document.body.scrollHeight")
+    items.append(driver.find_elements(By.CLASS_NAME, "qna"))
 
-    #늘어난 스크롤 위치와 이동 전 위치 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
-    if scroll_location == scroll_height:
+    #이동 후 스크롤 위치
+    after_location = driver.execute_script("return window.pageYOffset")
+    
+    #이동후 위치와 이동 후 위치가 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
+    if before_location == after_location:
         break
-	
-    #같지 않으면 스크롤 위치 값을 수정하여 같아질 때까지 반복
+
+    #같지 않으면 다음 조건 실행
     else:
-        #스크롤 위치값을 수정
-        scroll_location = driver.execute_script("return document.body.scrollHeight")
+        #이동여부 판단 기준이 되는 이전 위치 값 수정
+        before_location = driver.execute_script("return window.pageYOffset")
+
+# 안 쓰지만 백업용
+# while True:
+# 	#현재 스크롤의 가장 아래로 내림
+#     driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+    
+#     #전체 스크롤이 늘어날 때까지 대기
+#     time.sleep(1)
+#     # driver.implicitly_wait(1)
+    
+#     #늘어난 스크롤 높이
+#     scroll_height = driver.execute_script("return document.body.scrollHeight")
+
+#     #늘어난 스크롤 위치와 이동 전 위치 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
+#     if scroll_location == scroll_height:
+#         break
+	
+#     #같지 않으면 스크롤 위치 값을 수정하여 같아질 때까지 반복
+#     else:
+#         #스크롤 위치값을 수정
+#         scroll_location = driver.execute_script("return document.body.scrollHeight")
 
 
 
@@ -59,6 +81,11 @@ while True:
 #     driver.back()
     # print(i.text)
 
+for i in items:
+    print("-"*80)
+    print(i)
+
+print(len(items))
 
 time.sleep(180)
 
