@@ -19,11 +19,7 @@ driver.implicitly_wait(5)
 # URL에 접근
 driver.get('https://www.univ100.kr/qna/344')
 
-# 페이지 로딩을 위한 5초 대기
-driver.implicitly_wait(5)
-
-items = driver.find_elements(By.CLASS_NAME, "qna")
-
+# 초기 스크롤 위치 설정
 scroll_location = driver.execute_script("return document.body.scrollHeight")
 
 while True:
@@ -31,7 +27,8 @@ while True:
     driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
     
     #전체 스크롤이 늘어날 때까지 대기
-    time.sleep(2)
+    time.sleep(0.2)
+    # driver.implicitly_wait(1)
     
     #늘어난 스크롤 높이
     scroll_height = driver.execute_script("return document.body.scrollHeight")
@@ -51,13 +48,18 @@ while True:
 # # for i in items:
 # #     print(i.click())
 
-# driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
 # items.append(driver.find_elements(By.CLASS_NAME, "qna"))
 
 
 # print(len(items))
 
-time.sleep(3)
+# for i in items:
+#     i.click()
+#     time.sleep(3)
+#     driver.back()
+    # print(i.text)
+
+
+time.sleep(180)
 
 driver.close()
