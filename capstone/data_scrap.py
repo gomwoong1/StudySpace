@@ -20,28 +20,27 @@ before_location = driver.execute_script("return window.pageYOffset")
 
 # items = driver.find_elements(By.CLASS_NAME, "qna")
 item = driver.find_element(By.CSS_SELECTOR, '[data-index="0"]')
+item.click()
 
-# while True:
-for i in range(0, 1):
-	#현재 위치 + 500으로 스크롤 이동
-    driver.execute_script("window.scrollTo(0,{})".format(before_location + 800))
+# # while True:
+# for i in range(0, 1):
+# 	#현재 위치 + 500으로 스크롤 이동
+#     driver.execute_script("window.scrollTo(0,{})".format(before_location + 800))
         
-    #전체 스크롤이 늘어날 때까지 대기
-    time.sleep(2)
-    
-    items.append(driver.find_elements(By.CLASS_NAME, "qna"))
+#     #전체 스크롤이 늘어날 때까지 대기
+#     time.sleep(2)
 
-    #이동 후 스크롤 위치
-    after_location = driver.execute_script("return window.pageYOffset")
+#     #이동 후 스크롤 위치
+#     after_location = driver.execute_script("return window.pageYOffset")
     
-    #이동후 위치와 이동 후 위치가 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
-    if before_location == after_location:
-        break
+#     #이동후 위치와 이동 후 위치가 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
+#     if before_location == after_location:
+#         break
 
-    #같지 않으면 다음 조건 실행
-    else:
-        #이동여부 판단 기준이 되는 이전 위치 값 수정
-        before_location = driver.execute_script("return window.pageYOffset")
+#     #같지 않으면 다음 조건 실행
+#     else:
+#         #이동여부 판단 기준이 되는 이전 위치 값 수정
+#         before_location = driver.execute_script("return window.pageYOffset")
 
 # 안 쓰지만 백업용
 # while True:
@@ -81,11 +80,11 @@ for i in range(0, 1):
 #     driver.back()
     # print(i.text)
 
-for i in items:
-    print("-"*80)
-    print(i)
+# for i in items:
+#     print("-"*80)
+#     print(i)
 
-print(len(items))
+# print(len(items))
 
 time.sleep(180)
 
