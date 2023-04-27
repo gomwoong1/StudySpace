@@ -1,12 +1,14 @@
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
-
 import time
 
 # 시스템에 부착된 장치가 작동하지 않습니다. (0x1F) 에러 제어용 코드
 # driver = webdriver.Chrome() 코드에 대한 에러 제어
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
+
+# 페이지 리소스 모두 다운할 때까지 기다리는 옵션
+options.page_load_strategy = 'normal'
 driver = webdriver.Chrome(options=options)
 
 # URL에 접근
@@ -19,29 +21,37 @@ time.sleep(1.5)
 before_location = driver.execute_script("return window.pageYOffset")
 
 # # # while True:
-for i in range(0, 2):
-	#현재 위치 + 500으로 스크롤 이동
-    driver.execute_script("window.scrollTo(0,{})".format(before_location + 800))
+# for i in range(0, 1):
+	
+
+# while True:
+    # i = 0
+for i in range(0, 15, 1):
+    try:
+        item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
+        time.sleep(0.5)
+        driver.back()
+        time.sleep(0.5)
+        #i += 1
+
+    except:
+        #현재 위치 + 500으로 스크롤 이동
+        driver.execute_script("window.scrollTo(0,{})".format(before_location + 800))
+            
+        #전체 스크롤이 늘어날 때까지 대기
+        time.sleep(0.3)
+
+        #이동 후 스크롤 위치
+        after_location = driver.execute_script("return window.pageYOffset")
         
-    #전체 스크롤이 늘어날 때까지 대기
-    time.sleep(1)
+        #이동후 위치와 이동 후 위치가 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
+        if before_location == after_location:
+            break
 
-    #이동 후 스크롤 위치
-    after_location = driver.execute_script("return window.pageYOffset")
-    
-    #이동후 위치와 이동 후 위치가 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
-    if before_location == after_location:
-        break
-
-    #같지 않으면 다음 조건 실행
-    else:
-        #이동여부 판단 기준이 되는 이전 위치 값 수정
-        before_location = driver.execute_script("return window.pageYOffset")
-
-for i in range(0, 6, 1):
-    item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="' + str(i) + '"]').click()
-    time.sleep(3)
-    driver.back()
+        #같지 않으면 다음 조건 실행
+        else:
+            #이동여부 판단 기준이 되는 이전 위치 값 수정
+            before_location = driver.execute_script("return window.pageYOffset")
 
 # item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="0"]')
 # print("0:",item)
@@ -75,29 +85,6 @@ for i in range(0, 6, 1):
 #     else:
 #         #스크롤 위치값을 수정
 #         scroll_location = driver.execute_script("return document.body.scrollHeight")
-
-
-
-# items = driver.find_elements(By.CLASS_NAME, "qna")
-# # for i in items:
-# #     print(i.click())
-
-# items.append(driver.find_elements(By.CLASS_NAME, "qna"))
-
-
-# print(len(items))
-
-# for i in items:
-#     i.click()
-#     time.sleep(3)
-#     driver.back()
-    # print(i.text)
-
-# for i in items:
-#     print("-"*80)
-#     print(i)
-
-# print(len(items))
 
 time.sleep(180)
 
