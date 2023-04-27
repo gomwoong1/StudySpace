@@ -15,17 +15,10 @@ driver.get('https://www.univ100.kr/qna/344')
 # 페이지 로딩을 위한 1.5초 대기
 time.sleep(1.5)
 
-
-item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="0"]')
-print("0:",item)
-item.click()
-time.sleep(3)
-driver.back()
-
 # 초기 스크롤 위치 설정
 before_location = driver.execute_script("return window.pageYOffset")
 
-# # while True:
+# # # while True:
 for i in range(0, 2):
 	#현재 위치 + 500으로 스크롤 이동
     driver.execute_script("window.scrollTo(0,{})".format(before_location + 800))
@@ -44,6 +37,11 @@ for i in range(0, 2):
     else:
         #이동여부 판단 기준이 되는 이전 위치 값 수정
         before_location = driver.execute_script("return window.pageYOffset")
+
+for i in range(0, 6, 1):
+    item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="' + str(i) + '"]').click()
+    time.sleep(3)
+    driver.back()
 
 # item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="0"]')
 # print("0:",item)
