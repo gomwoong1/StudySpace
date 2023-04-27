@@ -22,14 +22,30 @@ before_location = driver.execute_script("return window.pageYOffset")
 
 # # # while True:
 # for i in range(0, 1):
-	
-i = 0
+
+# data_index 저장용 변수와 에러제어용 변수 선언
+# i = 0
 cnt = 0 
-while True:
-# for i in range(0, 15, 1):
+
+# while True:
+for i in range(0, 9, 1):
     try:
         item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
         time.sleep(0.5)
+        
+        # 데이터 긁어오고 저장하는 영역
+        
+        title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
+        content = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
+        dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
+        category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
+        date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
+        
+        print("\nnum: {}, title: {}\n".format(i, title))
+        print("카테고리: {}, 학과: {}, 날짜: {}".format(category, dept, date))
+        print(content)
+        print("-"*100)
+        
         driver.back()
         time.sleep(0.5)
         i += 1
