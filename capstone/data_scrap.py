@@ -23,20 +23,30 @@ before_location = driver.execute_script("return window.pageYOffset")
 # # # while True:
 # for i in range(0, 1):
 	
-
-# while True:
-    # i = 0
-for i in range(0, 15, 1):
+i = 0
+cnt = 0 
+while True:
+# for i in range(0, 15, 1):
     try:
         item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
         time.sleep(0.5)
         driver.back()
         time.sleep(0.5)
-        #i += 1
+        i += 1
 
     except:
-        #현재 위치 + 500으로 스크롤 이동
-        driver.execute_script("window.scrollTo(0,{})".format(before_location + 800))
+        print("{}를 찾는중!".format(i))
+        
+        cnt += 1
+        
+        if cnt > 3:
+            # 스크롤이 너무 많이 넘어가서 못 찾는 경우를 대비
+            driver.execute_script("window.scrollTo(0,{})".format(after_location - 1000))
+            cnt = 0
+            
+        else :
+            #현재 위치 + 200으로 스크롤 이동
+            driver.execute_script("window.scrollTo(0,{})".format(before_location + 200))
             
         #전체 스크롤이 늘어날 때까지 대기
         time.sleep(0.3)
