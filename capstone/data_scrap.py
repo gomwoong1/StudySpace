@@ -11,6 +11,9 @@ options.add_experimental_option("excludeSwitches", ["enable-logging"])
 options.page_load_strategy = 'normal'
 driver = webdriver.Chrome(options=options)
 
+# 창 최대화
+driver.maximize_window()
+
 # URL에 접근
 driver.get('https://www.univ100.kr/qna/344')
 
@@ -20,64 +23,86 @@ time.sleep(1.5)
 # 초기 스크롤 위치 설정
 before_location = driver.execute_script("return window.pageYOffset")
 
-# # # while True:
-# for i in range(0, 1):
+driver.execute_script("window.scrollTo(0,{})".format(before_location + 200))
+            
+#전체 스크롤이 늘어날 때까지 대기
+time.sleep(0.3)
+
+#이동 후 스크롤 위치
+after_location = driver.execute_script("return window.pageYOffset")
+
+items = driver.find_element(By.CSS_SELECTOR, 'div[data-index="3"]').click()
+
+title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
+content = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
+dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
+category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
+date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
+
+answers = driver.find_elements(By.CSS_SELECTOR, 'div[data-index="3"]')
+
+for answer in answers:
+    ans = answer.find_element(By.CSS_SELECTOR, "div[class='answer__text']").text
+    print(ans)
+
 
 # data_index 저장용 변수와 에러제어용 변수 선언
 # i = 0
 cnt = 0 
 
 # while True:
-for i in range(0, 9, 1):
-    try:
-        item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
-        time.sleep(0.5)
+# for i in range(0, 9, 1):
+#     try:
+#         item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
+#         time.sleep(0.5)
         
-        # 데이터 긁어오고 저장하는 영역
+#         # 데이터 긁어오고 저장하는 영역
         
-        title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
-        content = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
-        dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
-        category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
-        date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
+#         title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
+#         content = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
+#         dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
+#         category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
+#         date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
         
-        print("\nnum: {}, title: {}\n".format(i, title))
-        print("카테고리: {}, 학과: {}, 날짜: {}".format(category, dept, date))
-        print(content)
-        print("-"*100)
         
-        driver.back()
-        time.sleep(0.5)
-        i += 1
+        
+#         print("\nnum: {}, title: {}\n".format(i, title))
+#         print("카테고리: {}, 학과: {}, 날짜: {}".format(category, dept, date))
+#         print(content)
+#         print("-"*100)
+        
+#         driver.back()
+#         time.sleep(0.5)
+#         i += 1
 
-    except:
-        print("{}를 찾는중!".format(i))
+#     except:
+#         print("{}를 찾는중!".format(i))
         
-        cnt += 1
+#         cnt += 1
         
-        if cnt > 3:
-            # 스크롤이 너무 많이 넘어가서 못 찾는 경우를 대비
-            driver.execute_script("window.scrollTo(0,{})".format(after_location - 1000))
-            cnt = 0
+#         if cnt > 3:
+#             # 스크롤이 너무 많이 넘어가서 못 찾는 경우를 대비
+#             driver.execute_script("window.scrollTo(0,{})".format(after_location - 1000))
+#             cnt = 0
             
-        else :
-            #현재 위치 + 200으로 스크롤 이동
-            driver.execute_script("window.scrollTo(0,{})".format(before_location + 200))
+#         else :
+#             #현재 위치 + 200으로 스크롤 이동
+#             driver.execute_script("window.scrollTo(0,{})".format(before_location + 200))
             
-        #전체 스크롤이 늘어날 때까지 대기
-        time.sleep(0.3)
+#         #전체 스크롤이 늘어날 때까지 대기
+#         time.sleep(0.3)
 
-        #이동 후 스크롤 위치
-        after_location = driver.execute_script("return window.pageYOffset")
+#         #이동 후 스크롤 위치
+#         after_location = driver.execute_script("return window.pageYOffset")
         
-        #이동후 위치와 이동 후 위치가 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
-        if before_location == after_location:
-            break
+#         #이동후 위치와 이동 후 위치가 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
+#         if before_location == after_location:
+#             break
 
-        #같지 않으면 다음 조건 실행
-        else:
-            #이동여부 판단 기준이 되는 이전 위치 값 수정
-            before_location = driver.execute_script("return window.pageYOffset")
+#         #같지 않으면 다음 조건 실행
+#         else:
+#             #이동여부 판단 기준이 되는 이전 위치 값 수정
+#             before_location = driver.execute_script("return window.pageYOffset")
 
 # item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="0"]')
 # print("0:",item)
