@@ -24,38 +24,13 @@ time.sleep(1.5)
 before_location = driver.execute_script("return window.pageYOffset")
 
 # data_index 저장용 변수와 에러제어용 변수 선언
-# i = 0
+i = 0
 cnt = 0 
 
-# while True:
-for i in range(0, 9, 1):
+while True:
     try:
         item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
-        time.sleep(0.5)
         
-        # 데이터 긁어오고 저장하는 영역
-        
-        title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
-        content = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
-        dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
-        category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
-        date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
-        
-        answers = driver.find_elements(By.CSS_SELECTOR, 'div[data-index="3"]')
-
-        for answer in answers:
-            ans = answer.find_element(By.CSS_SELECTOR, "div[class='answer__text']").text
-            print(ans)
-        
-        print("\nnum: {}, title: {}\n".format(i, title))
-        print("카테고리: {}, 학과: {}, 날짜: {}".format(category, dept, date))
-        print(content)
-        print("-"*100)
-        
-        driver.back()
-        time.sleep(0.5)
-        # i += 1
-
     except:
         print("{}를 찾는중!".format(i))
         
@@ -69,7 +44,7 @@ for i in range(0, 9, 1):
         else :
             #현재 위치 + 200으로 스크롤 이동
             driver.execute_script("window.scrollTo(0,{})".format(before_location + 300))
-            
+        
         #전체 스크롤이 늘어날 때까지 대기
         time.sleep(0.3)
 
@@ -84,6 +59,41 @@ for i in range(0, 9, 1):
         else:
             #이동여부 판단 기준이 되는 이전 위치 값 수정
             before_location = driver.execute_script("return window.pageYOffset")
+            
+        continue
+    
+    time.sleep(0.5)
+    
+    # 데이터 긁어오고 저장하는 영역
+    
+    title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
+    content = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
+    dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
+    category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
+    date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
+    
+    answers = driver.find_elements(By.CSS_SELECTOR, "div[class='answer__text']")
+
+    print("\nnum: {}, title: {}\n".format(i, title))
+    print("카테고리: {}, 학과: {}, 날짜: {}".format(category, dept, date))
+    print(content)
+    print("-"*100)
+
+    for answer in answers:
+        try:
+            ans = answer.find_element(By.CSS_SELECTOR, "div[class='answer__text']").text
+            print(ans)
+            print("-"*100)
+        except:
+            print("\nnum: {}, title: {}\n".format(i, title))
+            print("카테고리: {}, 학과: {}, 날짜: {}".format(category, dept, date))
+            print(content)
+            print("-"*100)
+            print("")
+    
+    driver.back()
+    time.sleep(0.5)
+    i += 1
 
 # 안 쓰지만 백업용
 # while True:
