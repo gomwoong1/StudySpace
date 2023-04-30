@@ -62,16 +62,28 @@ while True:
             
         continue
     
+    if(i > 1): break
+    
     time.sleep(0.5)
     
     # 데이터 긁어오고 저장하는 영역
     
+    # 질문 제목
     title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
+    
+    # 질문 내용
     content = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
+    
+    # 학과
     dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
+    
+    # 카테고리
     category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
+    
+    # 질문 일시
     date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
     
+    # 답변
     answers = driver.find_elements(By.CSS_SELECTOR, "div[class='answer__text']")
 
     print("\nnum: {}, title: {}\n".format(i, title))
