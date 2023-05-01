@@ -29,14 +29,17 @@ driver.get('https://www.univ100.kr/qna/344')
 time.sleep(3)
 
 # 초기 스크롤 위치 설정
-before_location = driver.execute_script("return window.pageYOffset")
+# before_location = driver.execute_script("return window.pageYOffset")
+# before_location = driver.execute_script("return window.scrollY")
+# print("시작 전 스크롤 위치:", before_location)
+
+after_location = 0
 
 # data_index 저장용 변수와 에러제어용 변수 선언
 i = 0
 cnt = 0 
 
-# while i < 12:
-while i < 5:
+while i < 2988:
     try:
         item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
         
@@ -50,28 +53,30 @@ while i < 5:
             driver.execute_script("window.scrollTo(0,{})".format(after_location - 1200))
             cnt = 0
             
-        else :
-            #현재 위치 + 300으로 스크롤 이동
-            driver.execute_script("window.scrollTo(0,{})".format(before_location + 300))
+        # else :
+        #현재 위치 + 300으로 스크롤 이동
+        # driver.execute_script("window.scrollTo(0,{})".format(before_location + 300))
+        driver.execute_script("window.scrollTo(0,{})".format(after_location + 300))
         
         #전체 스크롤이 늘어날 때까지 대기
         time.sleep(0.5)
 
         #이동 후 스크롤 위치
         after_location = driver.execute_script("return window.pageYOffset")
-        
-        #이동후 위치와 이동 후 위치가 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
-        if before_location == after_location:
-            break
+        print("이동 후 스크롤 위치:", after_location)
 
-        #같지 않으면 다음 조건 실행
-        else:
-            #이동여부 판단 기준이 되는 이전 위치 값 수정
-            before_location = driver.execute_script("return window.pageYOffset")
+        #이동후 위치와 이동 후 위치가 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
+        # if before_location == after_location:
+        #     break
+
+        # #같지 않으면 다음 조건 실행
+        # else:
+        #     #이동여부 판단 기준이 되는 이전 위치 값 수정
+        #     before_location = driver.execute_script("return window.pageYOffset")
             
         continue
     
-    time.sleep(0.8)
+    time.sleep(0.5)
     
     # 데이터 긁어오고 저장하는 영역
     
@@ -112,9 +117,9 @@ while i < 5:
 
     # 뒤로가기 이후 스크롤이 위치를 잡지 못헀을 경우를 대비해 수동 이동
     driver.back()
-    driver.execute_script("window.scrollTo(0,{})".format(before_location))
-
-    time.sleep(0.8)
+    time.sleep(0.5)
+    driver.execute_script("window.scrollTo(0,{})".format(after_location))
+    print("위치 복원:", after_location)
     i += 1
     
 # dataFrame을 csv 파일로 변환
