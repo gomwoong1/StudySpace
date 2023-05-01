@@ -46,17 +46,17 @@ while i < 2988:
     except:
         print("{}를 찾는중!".format(i))
         
-        cnt += 1
+        # cnt += 1
         
-        if cnt > 3:
-            # 스크롤이 너무 많이 넘어가서 못 찾는 경우를 대비
-            driver.execute_script("window.scrollTo(0,{})".format(after_location - 1200))
-            cnt = 0
+        # if cnt > 10:
+        #     # 스크롤이 너무 많이 넘어가서 못 찾는 경우를 대비
+        #     after_location -= 3800
+        #     driver.execute_script("window.scrollTo(0,{})".format(after_location))
+        #     cnt = 0
             
         # else :
-        #현재 위치 + 300으로 스크롤 이동
         # driver.execute_script("window.scrollTo(0,{})".format(before_location + 300))
-        driver.execute_script("window.scrollTo(0,{})".format(after_location + 300))
+        driver.execute_script("window.scrollTo(0,{})".format(after_location + 100))
         
         #전체 스크롤이 늘어날 때까지 대기
         time.sleep(0.5)
@@ -73,7 +73,7 @@ while i < 2988:
         # else:
         #     #이동여부 판단 기준이 되는 이전 위치 값 수정
         #     before_location = driver.execute_script("return window.pageYOffset")
-            
+        
         continue
     
     time.sleep(0.5)
@@ -117,7 +117,7 @@ while i < 2988:
 
     # 뒤로가기 이후 스크롤이 위치를 잡지 못헀을 경우를 대비해 수동 이동
     driver.back()
-    time.sleep(0.5)
+    time.sleep(0.9)
     driver.execute_script("window.scrollTo(0,{})".format(after_location))
     print("위치 복원:", after_location)
     i += 1
