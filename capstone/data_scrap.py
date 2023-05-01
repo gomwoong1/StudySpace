@@ -6,7 +6,7 @@ import time
 # pandas에 데이터를 삽입하는 함수
 def insertData(number, title, category, dept, question, answer, comment):
     dataSet = [number, title, category, dept, question, answer, comment]
-    pd.loc[len(data)] = dataSet
+    data.loc[len(data)] = dataSet
 
 data = pd.DataFrame(columns=['number', 'title', 'category', 'dept', 'question', 'answer','comment'])
 
@@ -35,7 +35,8 @@ before_location = driver.execute_script("return window.pageYOffset")
 i = 0
 cnt = 0 
 
-while i < 12:
+# while i < 12:
+while i < 5:
     try:
         item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
         
@@ -95,11 +96,15 @@ while i < 12:
             # 답변 내용 긁어오기
             ans = answer.find_element(By.CSS_SELECTOR, "div[class='answer__text']").text
 
+            comment_list = []
             # 답변의 댓글이 있는 경우, 댓글까지 한 번에 데이터 삽입
             if len(comments) != 0:
                 for comment in comments:
-                    print("[{}]:{}".format(comment.find_element(By.CSS_SELECTOR, "div[class='comment__profile-text']").text,
-                                            comment.find_element(By.CSS_SELECTOR, "div[class='comment__text']").text), end="")
+                    author = "[" + comment.find_element(By.CSS_SELECTOR, "div[class='comment__profile-text']").text + "]"
+                    cmd = comment.find_element(By.CSS_SELECTOR, "div[class='comment__text']").text
+                    comment_list.append(author+cmd)
+                commentResult = ';'.join(comment_list)
+                insertData(i, title, category, dept, question, ans, commentResult)
             
             # 답변의 댓글이 없는 경우, 댓글없이 한 번에 데이터 삽입
             else:
@@ -109,7 +114,10 @@ while i < 12:
     time.sleep(0.8)
     i += 1
     
-# 브라우저 종료 방지용 delay
-time.sleep(180)
+# dataFrame을 csv 파일로 변환
+data.to_csv('data.csv', encoding='utf-8-sig', index=False)
+
+# # 브라우저 종료 방지용 delay
+# time.sleep(180)
 
 driver.close()
