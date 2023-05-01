@@ -1,6 +1,14 @@
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
+import pandas as pd
 import time
+
+# pandas에 데이터를 삽입하는 함수
+def insertData(number, title, category, dept, question, answer, comment):
+    dataSet = [number, title, category, dept, question, answer, comment]
+    pd.loc[len(data)] = dataSet
+
+data = pd.DataFrame(columns=['number', 'title', 'category', 'dept', 'question', 'answer','comment'])
 
 # 시스템에 부착된 장치가 작동하지 않습니다. (0x1F) 에러 제어용 코드
 # driver = webdriver.Chrome() 코드에 대한 에러 제어
@@ -66,54 +74,36 @@ while i < 12:
     
     # 데이터 긁어오고 저장하는 영역
     
-    # 질문 제목
+    # 질문 제목, 질문 내용, 학과, 카테고리, 질문 일시, 답변 html Element 긁어오기
     title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
-    
-    # 질문 내용
-    content = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
-    
-    # 학과
+    question = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
     dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
-    
-    # 카테고리
     category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
-    
-    # 질문 일시
     date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
-    
-    # 답변
     answers = driver.find_elements(By.CSS_SELECTOR, "article[class='answer']")
 
     if len(answers) == 0:
-        print("="*100)
-        print("num: {}, title: {}".format(i, title))
-        print("카테고리: {}, 학과: {}, 날짜: {}".format(category, dept, date))
-        print("="*100)
-        print(content)
-        print("-"*100)
-        print("답변이 없습니다.")
-        print("-"*100,"\n")
+        insertData(i, title, category, dept, question, "None", "None")
     
     else:
         # 답변 개수 별 답변 매핑
         for answer in answers:
-                
+            
             # 답변의 댓글 찾아오기
             comments = answer.find_elements(By.CSS_SELECTOR, "article[class='comment']")
-            
-            print("="*100)
-            print("num: {}, title: {}".format(i, title))
-            print("카테고리: {}, 학과: {}, 날짜: {}".format(category, dept, date))
-            print("="*100)
-            print(content)
-            print("-"*100)
-            print("A:",answer.find_element(By.CSS_SELECTOR, "div[class='answer__text']").text)
-            print("-"*100,"\n")
 
+            # 답변 내용 긁어오기
+            ans = answer.find_element(By.CSS_SELECTOR, "div[class='answer__text']").text
+
+            # 답변의 댓글이 있는 경우, 댓글까지 한 번에 데이터 삽입
             if len(comments) != 0:
                 for comment in comments:
                     print("[{}]:{}".format(comment.find_element(By.CSS_SELECTOR, "div[class='comment__profile-text']").text,
                                             comment.find_element(By.CSS_SELECTOR, "div[class='comment__text']").text), end="")
+            
+            # 답변의 댓글이 없는 경우, 댓글없이 한 번에 데이터 삽입
+            else:
+                insertData(i, title, category, dept, question, ans, "None")
 
     driver.back()
     time.sleep(0.8)
