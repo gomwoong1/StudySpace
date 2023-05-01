@@ -17,8 +17,8 @@ driver.maximize_window()
 # URL에 접근
 driver.get('https://www.univ100.kr/qna/344')
 
-# 페이지 로딩을 위한 1.5초 대기
-time.sleep(1.5)
+# 페이지 로딩을 위한 3초 대기
+time.sleep(3)
 
 # 초기 스크롤 위치 설정
 before_location = driver.execute_script("return window.pageYOffset")
@@ -27,7 +27,7 @@ before_location = driver.execute_script("return window.pageYOffset")
 i = 0
 cnt = 0 
 
-while i < 8:
+while i < 12:
     try:
         item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
         
@@ -46,7 +46,7 @@ while i < 8:
             driver.execute_script("window.scrollTo(0,{})".format(before_location + 300))
         
         #전체 스크롤이 늘어날 때까지 대기
-        time.sleep(0.3)
+        time.sleep(0.5)
 
         #이동 후 스크롤 위치
         after_location = driver.execute_script("return window.pageYOffset")
@@ -62,7 +62,7 @@ while i < 8:
             
         continue
     
-    time.sleep(0.5)
+    time.sleep(0.8)
     
     # 데이터 긁어오고 저장하는 영역
     
@@ -82,7 +82,7 @@ while i < 8:
     date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
     
     # 답변
-    answers = driver.find_elements(By.CSS_SELECTOR, "div[class='answer__text']")
+    answers = driver.find_elements(By.CSS_SELECTOR, "article[class='answer']")
 
     if len(answers) == 0:
         print("="*100)
@@ -97,17 +97,26 @@ while i < 8:
     else:
         # 답변 개수 별 답변 매핑
         for answer in answers:
+                
+            # 답변의 댓글 찾아오기
+            comments = answer.find_elements(By.CSS_SELECTOR, "article[class='comment']")
+            
             print("="*100)
             print("num: {}, title: {}".format(i, title))
             print("카테고리: {}, 학과: {}, 날짜: {}".format(category, dept, date))
             print("="*100)
             print(content)
             print("-"*100)
-            print("A:",answer.text)
+            print("A:",answer.find_element(By.CSS_SELECTOR, "div[class='answer__text']").text)
             print("-"*100,"\n")
 
+            if len(comments) != 0:
+                for comment in comments:
+                    print("[{}]:{}".format(comment.find_element(By.CSS_SELECTOR, "div[class='comment__profile-text']").text,
+                                            comment.find_element(By.CSS_SELECTOR, "div[class='comment__text']").text), end="")
+
     driver.back()
-    time.sleep(0.5)
+    time.sleep(0.8)
     i += 1
     
 # 브라우저 종료 방지용 delay
