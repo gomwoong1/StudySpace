@@ -110,14 +110,14 @@ while i < 5:
             else:
                 insertData(i, title, category, dept, question, ans, "None")
 
+    # 뒤로가기 이후 스크롤이 위치를 잡지 못헀을 경우를 대비해 수동 이동
     driver.back()
+    driver.execute_script("window.scrollTo(0,{})".format(before_location))
+
     time.sleep(0.8)
     i += 1
     
 # dataFrame을 csv 파일로 변환
-data.to_csv('data.csv', encoding='utf-8-sig', index=False)
-
-# # 브라우저 종료 방지용 delay
-# time.sleep(180)
+data.to_csv('QnA.csv', encoding='utf-8-sig', index=False)
 
 driver.close()
