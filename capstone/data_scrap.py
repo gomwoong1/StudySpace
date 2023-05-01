@@ -85,13 +85,14 @@ while i < 8:
     answers = driver.find_elements(By.CSS_SELECTOR, "div[class='answer__text']")
 
     if len(answers) == 0:
-        print("\nnum: {}, title: {}\n".format(i, title))
+        print("="*100)
+        print("num: {}, title: {}".format(i, title))
         print("카테고리: {}, 학과: {}, 날짜: {}".format(category, dept, date))
+        print("="*100)
         print(content)
         print("-"*100)
-        print("")
-        
-        ans = "답변이 없습니다."
+        print("답변이 없습니다.")
+        print("-"*100,"\n")
     
     else:
         # 답변 개수 별 답변 매핑
@@ -102,9 +103,8 @@ while i < 8:
             print("="*100)
             print(content)
             print("-"*100)
-            print("")
             print("A:",answer.text)
-            print("-"*100)
+            print("-"*100,"\n")
 
     driver.back()
     time.sleep(0.5)
