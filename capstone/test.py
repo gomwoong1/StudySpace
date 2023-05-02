@@ -1,5 +1,6 @@
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 import pandas as pd
 import time
 
@@ -28,11 +29,6 @@ driver.get('https://www.univ100.kr/qna/344')
 # 페이지 로딩을 위한 3초 대기
 time.sleep(3)
 
-# 초기 스크롤 위치 설정
-# before_location = driver.execute_script("return window.pageYOffset")
-# before_location = driver.execute_script("return window.scrollY")
-# print("시작 전 스크롤 위치:", before_location)
-
 after_location = 0
 
 # data_index 저장용 변수와 에러제어용 변수 선언
@@ -47,36 +43,32 @@ while i < 2988:
         print("{}를 찾는중!".format(i))
         
         cnt += 1
-        
-        if cnt > 10:
-            # 스크롤이 너무 많이 넘어가서 못 찾는 경우를 대비
-            # after_location -= 3800
-            # driver.execute_script("window.scrollTo(0,{})".format(after_location))
+        find = None
+        if cnt > 4:
+            while not find:
+                try:
+                    driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i)))
+                except:
+                    driver.execute_script("window.scrollTo(0,{})".format(after_location - 1))
+                    print("test")
+
+            # 위로 스크롤 업해서 찾은 스크롤의 위치 저장
+            after_location = driver.execute_script("return window.pageYOffset")
             cnt = 0
+            print("탈출")
             
-        # else :
-        # driver.execute_script("window.scrollTo(0,{})".format(before_location + 300))
         driver.execute_script("window.scrollTo(0,{})".format(after_location + 100))
         
         #전체 스크롤이 늘어날 때까지 대기
-        time.sleep(0.5)
+        time.sleep(0.8)
 
         #이동 후 스크롤 위치
         after_location = driver.execute_script("return window.pageYOffset")
         print("이동 후 스크롤 위치:", after_location)
 
-        #이동후 위치와 이동 후 위치가 같으면(더 이상 스크롤이 늘어나지 않으면) 종료
-        # if before_location == after_location:
-        #     break
-
-        # #같지 않으면 다음 조건 실행
-        # else:
-        #     #이동여부 판단 기준이 되는 이전 위치 값 수정
-        #     before_location = driver.execute_script("return window.pageYOffset")
-        
         continue
     
-    time.sleep(0.5)
+    time.sleep(0.8)
     
     # 데이터 긁어오고 저장하는 영역
     
