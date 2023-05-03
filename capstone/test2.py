@@ -33,22 +33,17 @@ time.sleep(3)
 after_location = 0
 
 # data_index 저장용 변수와 에러제어용 변수 선언
-i = 0
-# i = 1500
-cnt = 0 
+i = 1500
 
 try:
-    # while i < 2500:
-    while i < 10:
-    # while i < 2988:
+    while i < 2500:
+    # while i < 2990:
         try:
-            # item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
+            # 해당 data_index를 가진 요소를 찾는다면 요소가 로딩될 때까지 명시적 대기
             item = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))))).click()
             
         except:
             print("{}를 찾는중!".format(i))
-            
-            cnt += 1
             
             driver.execute_script("window.scrollTo(0,{})".format(after_location + 100))
             
@@ -63,18 +58,12 @@ try:
         
         time.sleep(2)
         # 질문 제목, 질문 내용, 학과, 카테고리, 질문 일시, 답변 text 긁어오기
-        # title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
-        title = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "h2[class='question__title']"))).text
-        # question = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
-        question = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div[class='question__text']"))).text
-        # dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
-        dept = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div[class='question__profile']"))).text
-        # category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
-        category = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "span[class='question__category']"))).text
-        # date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
-        date = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "span[class='question__date']"))).text
-        # answers = driver.find_elements(By.CSS_SELECTOR, "article[class='answer']")
-        answers = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article[class='answer']")))
+        title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
+        question = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
+        dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
+        category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
+        date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
+        answers = driver.find_elements(By.CSS_SELECTOR, "article[class='answer']")
 
         if len(answers) == 0:
             insertData(i, title, category, dept, question, "None", "None")
