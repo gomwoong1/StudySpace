@@ -1,5 +1,7 @@
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 import time
 
@@ -31,15 +33,17 @@ time.sleep(3)
 after_location = 0
 
 # data_index 저장용 변수와 에러제어용 변수 선언
-# i = 0
-i = 606
+i = 0
+# i = 1500
 cnt = 0 
 
 try:
-    while i < 1500:
+    # while i < 2500:
+    while i < 10:
     # while i < 2988:
         try:
-            item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
+            # item = driver.find_element(By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))).click()
+            item = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))))).click()
             
         except:
             print("{}를 찾는중!".format(i))
@@ -59,12 +63,18 @@ try:
         
         time.sleep(2)
         # 질문 제목, 질문 내용, 학과, 카테고리, 질문 일시, 답변 text 긁어오기
-        title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
-        question = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
-        dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
-        category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
-        date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
-        answers = driver.find_elements(By.CSS_SELECTOR, "article[class='answer']")
+        # title = driver.find_element(By.CSS_SELECTOR, "h2[class='question__title']").text
+        title = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "h2[class='question__title']"))).text
+        # question = driver.find_element(By.CSS_SELECTOR, "div[class='question__text']").text
+        question = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div[class='question__text']"))).text
+        # dept = driver.find_element(By.CSS_SELECTOR, "div[class='question__profile']").text
+        dept = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div[class='question__profile']"))).text
+        # category = driver.find_element(By.CSS_SELECTOR, "span[class='question__category']").text
+        category = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "span[class='question__category']"))).text
+        # date = driver.find_element(By.CSS_SELECTOR, "span[class='question__date']").text
+        date = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "span[class='question__date']"))).text
+        # answers = driver.find_elements(By.CSS_SELECTOR, "article[class='answer']")
+        answers = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article[class='answer']")))
 
         if len(answers) == 0:
             insertData(i, title, category, dept, question, "None", "None")
@@ -95,7 +105,7 @@ try:
 
         # 뒤로가기 이후 스크롤이 위치를 잡지 못헀을 경우를 대비해 수동 이동
         driver.back()
-        time.sleep(0.8)
+        time.sleep(1.5)
 
         if driver.execute_script("return window.pageYOffset") == 0:
             driver.execute_script("window.scrollTo(0,{})".format(after_location))
