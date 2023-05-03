@@ -11,7 +11,7 @@
             "module": "flask",
             "env": {
                 // "FLASK_APP": "main.py",
-                "FLASK_APP": "/capstone/flask/app.py",
+                "FLASK_APP": "capstone/flask/app.py",
                 "FLASK_DEBUG": "1"
             },
             "args": [
