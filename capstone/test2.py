@@ -35,17 +35,26 @@ after_location = 0
 # data_index 저장용 변수와 에러제어용 변수 선언
 i = 1500
 
+for j in range(1, 366, 1):
+    after_location += 1000
+    driver.execute_script("window.scrollTo(0,{})".format(after_location))
+    print("스크롤 위치:", after_location)
+    time.sleep(0.1)
+
+after_location += 500
+driver.execute_script("window.scrollTo(0,{})".format(after_location))
+
 try:
     while i < 2500:
     # while i < 2990:
         try:
             # 해당 data_index를 가진 요소를 찾는다면 요소가 로딩될 때까지 명시적 대기
-            item = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))))).click()
+            item = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div[data-index="{}"]'.format(str(i))))).click()
             
         except:
             print("{}를 찾는중!".format(i))
             
-            driver.execute_script("window.scrollTo(0,{})".format(after_location + 100))
+            driver.execute_script("window.scrollTo(0,{})".format(after_location + 50))
             
             #전체 스크롤이 늘어날 때까지 대기
             time.sleep(0.8)
