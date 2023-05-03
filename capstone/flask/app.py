@@ -26,5 +26,12 @@ def jsonData():
 
     return jsonify({"PData": "서버에서 보낸 데이터: " + data})
 
+# Query String Test
+# http://localhost:5000/QueryData?data=
+@app.route('/QueryData')
+def queryData():
+    data = request.args.get('data')
+    return "서버로부터 돌아온 답변: " + data + " 입니다!"
+
 if __name__ == '__main__':
     app.run("0.0.0.0")
