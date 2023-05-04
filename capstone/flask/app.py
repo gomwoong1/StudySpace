@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+import model
 
 # templates 폴더내에 html 파일이 있음을 명시
 app = Flask(__name__, template_folder='templates')
@@ -32,6 +33,15 @@ def jsonData():
 def queryData():
     data = request.args.get('data')
     return "서버로부터 돌아온 답변: " + data + " 입니다!"
+
+# POST 방식으로 시간을 전달받으면 결과값 연산 후 돌려줌
+@app.route('/predictTest', methods=['POST'])
+def predictTest():
+    hour = float(request.get_json())
+    test = model.LinearRegression()
+    result = str(test.predict(hour))
+
+    return jsonify({"predict": "예상 점수는 " + result + "점 입니다."})
 
 if __name__ == '__main__':
     app.run("0.0.0.0")
