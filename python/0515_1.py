@@ -55,14 +55,16 @@ for cnt in range(jul):
         jumsu = "C"
     elif score >= 65:
         jumsu = "D+"
+    elif score >= 60:
+        jumsu = "D"
     else:
         jumsu = "F"
 
-    val = "%02d,%12s,%5s,%3s,%3s,%3d,%3s\n" % (cnt, hbun, irum, gender, gugi, score, jumsu)
+    val = "%02d,%12s,%5s,%3s,%3s,%3d,%3s\n" % (cnt+1, hbun, irum, gender, gugi, score, jumsu)
     fileName.write(val)
 
 fileName.close()
-print("<<<<< 파일 쓰기 완료 >>>>>\n")
-print("-"*55)
-print("C:\Python_ex\testfile.txt 파일의 내용을 확인하세요..")
-print("="*55)
+print("\n<<<<< 파일 쓰기 완료 >>>>>\n")
+print("-"*52)
+print("C:\Python_ex\\testfile.txt 파일의 내용을 확인하세요..")
+print("="*52)
