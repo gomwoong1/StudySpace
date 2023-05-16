@@ -1,7 +1,18 @@
 import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
 
-df = pd.read_csv(r"C:\Users\gomwo\Desktop\git\python_practice\AI\report\Korean_demographics_2000-2022.csv")
+df = pd.read_csv(r"C:\Users\gomwo\Desktop\git\python_practice\AI\report\2039.csv")
 
-filtered_df = df[(df['Date'].str.startswith('1/1/')) & (df['Region'] == 'Whole country')]
+seoul = df[df['region'] == 'seoul']
+seoul_total_values = np.array(seoul['total'])
 
-filtered_df.to_csv('whole_country.csv', index=False)
+years = np.arange(2000, 2022 + 1)
+years = years.reshape(-1,1)
+
+print(seoul_total_values)
+
+lr = LinearRegression()
+
+lr.fit(years, seoul_total_values)
+print(lr.predict([[2039]]))
