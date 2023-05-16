@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
-VALUE = 2035
+VALUE = 2022
 
 region = ["seoul", "busan", "daegu", "incheon", "gwangju", "daejeon", "ulsan", "gyeonggi", "gangwon", 
         "chungcheongbukdo", "chungcheongnamdo", "jeonnabukdo", "jeonnanamdo", "gyeoungsangbukdo", 
@@ -35,3 +35,4 @@ for reg,reg_kor in zip(region, region_kor):
     result[reg_kor] = round(float(female_lr.predict([[VALUE]]) / old_lr.predict([[VALUE]])),2)
 
 print("{}년 전국지역 소멸위험지수: {}%".format(VALUE, result))
+
