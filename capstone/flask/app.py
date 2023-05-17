@@ -1,9 +1,46 @@
 from flask import Flask, render_template, request, jsonify
 import model
+from AI.report.rep_4 import peopleRegression
 
 # templates 폴더내에 html 파일이 있음을 명시
 app = Flask(__name__, template_folder='templates')
 
+# 
+@app.route("/lr")
+def lr():
+    return render_template('lr.html')
+
+@app.route("/lr/value", methods=['POST'])
+def lr_val():
+    data = request.get_json()
+    
+    plr = peopleRegression()
+    res = plr.predict(int(data))
+
+    normal = []
+    danger = []
+    high_danger = []
+
+    for key, value in res.items():
+        if value > 0.5:
+            normal.append("{}({})".format(key, value))
+        elif value > 0.2:
+            danger.append("{}({})".format(key, value))
+        else:
+            high_danger.append("{}({})".format(key, value))
+
+    if len(normal) == 0:
+        normal = ['없음']
+    
+    if len(danger) == 0:
+        danger = ['없음']
+
+    if len(high_danger) == 0:
+        high_danger = ['없음']
+
+    return jsonify({"normal": normal, "danger":danger, "high_danger":high_danger})
+
+# 
 @app.route("/")
 def home():
     return "Flask Test!"
