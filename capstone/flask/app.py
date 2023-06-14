@@ -5,16 +5,21 @@ from AI.report.rep_4 import peopleRegression
 # templates 폴더내에 html 파일이 있음을 명시
 app = Flask(__name__, template_folder='templates')
 
-# 
+
 @app.route("/lr")
 def lr():
     return render_template('lr.html')
 
+# /r/value url로 POST API 생성
 @app.route("/lr/value", methods=['POST'])
 def lr_val():
+    # HTTP BODY의 데이터를 request객체의 get_json() 함수로 받아옴
+    # JSON 형식으로 받아오고 이를 data 변수에 저장
     data = request.get_json()
     
+    # 모델 서빙을 위해 만든 클래스의 객체 생성
     plr = peopleRegression()
+    # 객체의 
     res = plr.predict(int(data))
 
     normal = []
