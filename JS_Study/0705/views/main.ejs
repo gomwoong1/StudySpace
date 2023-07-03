@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+        let name = '<%= name %>'
+        console.log(`프론트에서 받아온 값: ${name}`);
+
+        //라우터에서 쿼리스트링으로 값을 가져옴
+        $.ajax({
+            url: '/get-db',
+            method: 'POST',
+            data: {id: 1},
+            dataType: 'json',
+            success: (getData) => {
+                console.log(getData);
+            },
+            error: (request, status, err) => {
+                //console.error(`디비 테이블 가져오기 에러 ${req.status, req.responseText, err}`);
+            }
+        })
+    </script>
+</head>
+<body>
+    <h1>
+        <%= name %>
+    </h1>
+</body>
+</html>
