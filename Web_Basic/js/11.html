@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <a href="https://naver.com" id="target">바로가기</a>
+        <script>
+            let t = document.getElementById('target');
+            console.log(t.getAttribute('href'));
+            t.setAttribute('title', '바로가기2');
+            console.log(t.hasAttribute('title'));
+            t.removeAttribute('title');
+            console.log(t.hasAttribute('title'));
+        </script>
+    </body>
+</html>

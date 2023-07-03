@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    </head>
+    <body>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <ul>
+            <li class="act">1</li>
+            <li>2</li>
+            <li class="act">3</li>
+        </ul>
+        <ul>
+            <li id="act">1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <input type="button" value="run" onclick="$('li').css('color', 'red');">
+        <input type="button" value="run" onclick="$('.act').css('color', 'blue');">
+        <input type="button" value="run" onclick="$('#act').css('color', 'blue');">
+    </body>    
+</html>

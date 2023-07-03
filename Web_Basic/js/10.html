@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <ul>
+            <li class="marked">HTML</li>
+            <li>CSS</li>
+            <li id="active">JS
+                <ul>
+                    <li>JS Core</li>
+                    <li class="marked">DOM</li>
+                    <li class="marked">BOM</li>
+                </ul>
+            </li>
+        </ul>
+    <script>
+        let list = document.getElementsByClassName('marked');
+        console.group('documnet');
+        for(let i = 0; i < list.length; i++){
+            console.log(list[i].textContent);
+        }
+        console.groupEnd();
+
+        console.group('active');
+        let active = document.getElementById('active');
+        let list2 = active.getElementsByClassName('marked');
+        for(let i = 0; i < list2.length; i++){
+            console.log(list2[i].textContent);
+        }
+        console.groupEnd();
+    </script>
+    </body>
+</html>
