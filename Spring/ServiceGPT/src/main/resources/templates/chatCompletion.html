@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <link href="css/chat.css" rel="stylesheet" type="text/css">
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+    <script src="//code.jquery.com/jquery-3.5.1.js"></script>
+    <title>Chatting</title>
+  </head>
+  <body>
+
+  <div th:replace="header.html"></div>
+
+      <div class="chat-window">
+        <div class="chat_content">
+        </div>
+        <div class="chat-input">
+          <input id="input" type="text" placeholder="채팅을 입력하세요">
+          <button id="send" type="submit">전송</button>
+        </div>
+      </div>
+
+  <script src="js/chat.js"></script>
+  </body>
+</html>
