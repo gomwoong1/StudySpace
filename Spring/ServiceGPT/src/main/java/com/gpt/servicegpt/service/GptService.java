@@ -21,7 +21,7 @@ import java.util.List;
 
 @Service
 public class GptService {
-    private final String api = "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";
+    private final String api = "";
 
     OpenAiService openAiService = new OpenAiService(api);
 
